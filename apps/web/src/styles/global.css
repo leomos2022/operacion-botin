@@ -1,0 +1,47 @@
+/* ─────────────────────────────────────────────────────────────
+   Operación Botín — Hoja de estilos global
+   Tailwind 4 (vía @tailwindcss/vite) + design tokens
+   ───────────────────────────────────────────────────────────── */
+
+@import "tailwindcss";
+
+/* Design tokens como variables CSS — ver AGENT_RULES.md */
+@theme {
+  --color-bg: #0E1116;
+  --color-surface: #161B22;
+  --color-rojo: #E5484D;
+  --color-verde: #3FB68B;
+  --color-ambar: #F5A524;
+  --color-texto: #E6EDF3;
+  --color-muted: #9BA7B4;
+
+  --font-display: "Archivo Black", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Reset base sobre el tema oscuro del observatorio */
+html,
+body {
+  background-color: var(--color-bg);
+  color: var(--color-texto);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selección de texto con el rojo institucional */
+::selection {
+  background-color: var(--color-rojo);
+  color: var(--color-bg);
+}
+
+/* Enlaces: por defecto heredan, subrayado discreto al hover */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+a:hover {
+  color: var(--color-rojo);
+}

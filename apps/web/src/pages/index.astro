@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+      <div
+        class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-rojo)_0%,_transparent_55%)] opacity-20"
+      >
+      </div>
+    </div>
+
+    <div class="mx-auto max-w-7xl px-6 py-24 md:py-36">
+      <p
+        class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo)] mb-6"
+      >
+        Observatorio · Colombia · 2026
+      </p>
+
+      <h1
+        class="font-[var(--font-display)] text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl"
+      >
+        Hay cuentas que no duermen.
+        <span class="block text-[var(--color-rojo)] mt-2">
+          Y están hablando contigo.
+        </span>
+      </h1>
+
+      <p
+        class="mt-8 max-w-2xl text-lg md:text-xl text-[var(--color-muted)] leading-relaxed"
+      >
+        Operación Botín es un observatorio educativo que documenta cómo operan
+        los bots y la desinformación en Colombia. Sin alarmismo, sin
+        conspiraciones: con metodología abierta y datos con fuente.
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a
+          href="/metodologia"
+          class="inline-flex items-center gap-2 rounded-md bg-[var(--color-rojo)] px-6 py-3 font-[var(--font-body)] font-semibold text-[var(--color-bg)] hover:opacity-90 transition-opacity"
+        >
+          Ver metodología
+          <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href="/casos"
+          class="inline-flex items-center gap-2 rounded-md border border-white/15 px-6 py-3 font-[var(--font-body)] font-semibold text-[var(--color-texto)] hover:border-white/30 transition-colors"
+        >
+          Ver casos documentados
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TARJETAS DE PROPÓSITO -->
+  <section class="border-t border-white/5">
+    <div class="mx-auto max-w-7xl px-6 py-16 grid gap-6 md:grid-cols-3">
+      <article
+        class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-6"
+      >
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo)] mb-3">
+          01 · Documentar
+        </p>
+        <h2 class="font-[var(--font-display)] text-xl mb-2">
+          Comportamiento, no intenciones
+        </h2>
+        <p class="text-[var(--color-muted)] leading-relaxed text-sm">
+          Registrmos patrones observables de cuentas automatizadas y
+          operaciones de desinformación. Lo que decimos, lo sustentamos.
+        </p>
+      </article>
+
+      <article
+        class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-6"
+      >
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-verde)] mb-3">
+          02 · Educar
+        </p>
+        <h2 class="font-[var(--font-display)] text-xl mb-2">
+          Metodología abierta
+        </h2>
+        <p class="text-[var(--color-muted)] leading-relaxed text-sm">
+          Publicamos cómo etiquetamos, qué fuentes usamos y dónde están los
+          límites. Para que puedas replicar, auditar y corregir.
+        </p>
+      </article>
+
+      <article
+        class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-6"
+      >
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-ambar)] mb-3">
+          03 · Verificar
+        </p>
+        <h2 class="font-[var(--font-display)] text-xl mb-2">
+          Ciudadanía activa
+        </h2>
+        <p class="text-[var(--color-muted)] leading-relaxed text-sm">
+          Si ves una operación sospechosa, repórtala. Te decimos qué
+          información necesitamos y cómo la tratamos.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- AVISO EDITORIAL -->
+  <section class="border-t border-white/5">
+    <div class="mx-auto max-w-7xl px-6 py-12">
+      <p
+        class="font-[var(--font-mono)] text-sm text-[var(--color-muted)] border-l-2 border-[var(--color-rojo)] pl-4"
+      >
+        Regla editorial: <span class="text-[var(--color-texto)]">"Bot" no es
+        persona que discrepa.</span>
+        Reservamos la categoría para cuentas con comportamiento automatizado
+        demostrable. Toda afirmación factual lleva fuente.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

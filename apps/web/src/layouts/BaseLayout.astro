@@ -1,0 +1,158 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Operación Botín — Observatorio de bots y desinformación en Colombia',
+  description = 'Investigación educativa sobre cuentas automatizadas y operaciones de desinformación que operan en Colombia. Metodología abierta, datos con fuente.',
+} = Astro.props;
+
+const navItems = [
+  { href: '/', label: 'Índice' },
+  { href: '/casos', label: 'Casos' },
+  { href: '/la-industria', label: 'La Industria' },
+  { href: '/metodologia', label: 'Metodología' },
+  { href: '/verifica', label: 'Verifica' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="es-CO">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO básico -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Operación Botín" />
+    <link rel="canonical" href={Astro.url} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content="Operación Botín" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Favicon (placeholder SVG inline) -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230E1116'/><text x='50' y='68' font-size='64' text-anchor='middle' fill='%23E5484D' font-family='monospace'>OB</text></svg>"
+    />
+
+    <!-- Tipografías de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <!-- HEADER -->
+    <header class="border-b border-white/5 bg-[var(--color-surface)]/80 backdrop-blur sticky top-0 z-50">
+      <div class="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between gap-6">
+        <a href="/" class="flex items-center gap-3 group">
+          <span
+            class="inline-flex h-9 w-9 items-center justify-center rounded-md bg-[var(--color-rojo)] font-[var(--font-mono)] text-sm font-bold text-[var(--color-bg)]"
+            >OB</span
+          >
+          <span class="font-[var(--font-display)] text-xl tracking-tight">
+            Operación Botín
+          </span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          {navItems.map((item) => (
+            <a
+              href={item.href}
+              class="font-[var(--font-body)] text-[var(--color-muted)] hover:text-[var(--color-texto)] transition-colors"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        <!-- menú móvil (placeholder) -->
+        <button
+          type="button"
+          aria-label="Abrir menú"
+          class="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-[var(--color-muted)]"
+        >
+          ☰
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/5 bg-[var(--color-surface)]">
+      <div
+        class="mx-auto max-w-7xl px-6 py-10 grid gap-8 md:grid-cols-3 text-sm"
+      >
+        <div>
+          <p class="font-[var(--font-display)] text-lg mb-2">Operación Botín</p>
+          <p class="text-[var(--color-muted)] leading-relaxed">
+            Observatorio educativo sobre bots y desinformación en Colombia.
+            Metodología abierta, datos con fuente.
+          </p>
+        </div>
+
+        <div>
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-3">
+            Licencias
+          </p>
+          <ul class="space-y-1.5 text-[var(--color-muted)]">
+            <li>Código: <span class="text-[var(--color-texto)]">MIT</span></li>
+            <li>Contenido: <span class="text-[var(--color-texto)]">CC BY-SA 4.0</span></li>
+            <li>Datos: atribución por ficha</li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-3">
+            Navegación
+          </p>
+          <ul class="space-y-1.5">
+            {navItems.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-[var(--color-muted)] hover:text-[var(--color-texto)] transition-colors"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5">
+        <div
+          class="mx-auto max-w-7xl px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[var(--color-muted)] font-[var(--font-mono)]"
+        >
+          <span>© {year} Operación Botín</span>
+          <span>v0.1.0 · fase 0 · scaffolding</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

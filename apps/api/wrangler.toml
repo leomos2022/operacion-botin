@@ -1,0 +1,21 @@
+name = "operacion-botin-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Variables de entorno (no secretas) — ver .env.example en la raíz del monorepo
+[vars]
+CF_ENV = "development"
+
+# Rutas: el worker sirve la API bajo /api/v1/*
+# En producción, coloca este worker detrás de un Custom Domain o route.
+# routes = [
+#   { pattern = "api.operacionbotin.co/*", zone_name = "operacionbotin.co" }
+# ]
+
+# Observabilidad
+[observability]
+enabled = true
+
+# Para desarrollo local con datos de prueba, ver apps/api/.dev.vars
+# (no commitear .dev.vars — está en .gitignore)

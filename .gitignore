@@ -1,0 +1,58 @@
+# Dependencias
+node_modules/
+.pnp
+.pnp.js
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.uv/
+
+# Builds y caché
+dist/
+build/
+.astro/
+.output/
+.wrangler/
+.cache/
+*.tsbuildinfo
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+.dev.vars
+
+# Python
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# IDE / SO
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Datos sensibles / pesados
+packages/shared/data/**/*.parquet
+!packages/shared/data/.gitkeep
+*.log
+logs/
+
+# Cloudflare
+.wrangler/
