@@ -7,7 +7,7 @@
 
 ## FASE 0 — Cimientos
 
-- [EN CURSO] **0.1 — Scaffolding monorepo**: estructura de carpetas, git, apps/web base, apps/api base, pipeline base, packages/shared, CI, docs raíz.
+- [HECHA] **0.1 — Scaffolding monorepo**: estructura de carpetas, git, apps/web base, apps/api base, pipeline base, packages/shared, CI, docs raíz.
 - [PENDIENTE] **0.2 — Sistema de diseño**: tailwind config completo, componentes base (Botón, Tarjeta, Badge, Stat, Tabla), tokens de tipografía y espaciado, storybook o página de muestra.
 - [PENDIENTE] **0.3 — Layout y navegación**: header responsive con menú móvil, footer con licencias, layout base reutilizable, rutas (índice, casos, industria, metodología, verifica).
 - [PENDIENTE] **0.4 — Home scrollytelling**: hero con headline, secciones narrativas con scroll, visualizaciones placeholder, CTA a metodología.
