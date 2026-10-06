@@ -3,5 +3,10 @@
 Recolección de datos desde plataformas sociales (Twitter/X, Telegram,
 Bluesky) con rate-limit estricto y registro de fuente de cada registro.
 
-Se implementa en Fase 1.
+CLI:
+    uv run python -m src.extract --plataforma bluesky --termino "elecciones Colombia"
 """
+
+from .bluesky import ExtractorBluesky
+
+__all__ = ["ExtractorBluesky"]

@@ -18,11 +18,23 @@
 
 ---
 
-## FASES POSTERIORES (borrador — se detallan al cerrar Fase 0)
+## FASE 1 — Pipeline de extracción
 
-- **FASE 1** — Pipeline de extracción (Twitter/Telegram/Bluesky)
+- [HECHA] **1.1 — Configuración de credenciales**: definir qué APIs tenemos acceso, configurar `.env`, validar acceso.
+- [HECHA] **1.2 — Extractor Bluesky** (API abierta, sin costo): captura de posts públicos por término, DID de cuentas, hilos.
+- [PENDIENTE] **1.3 — Extractor Telegram** (bot observador en canales públicos): captura de mensajes por canal.
+- [PENDIENTE] **1.4 — Extractor Twitter/X** (API v2 tier gratuito, limitado): captura de timelines y mentions de cuentas de interés.
+- [HECHA] **1.5 — Esquema común de registros**: modelo Pydantic para `PostCapturado` con marca de tiempo, plataforma, fuente, hash.
+- [HECHA] **1.6 — Almacenamiento local**: guardado en Parquet particionado por fecha + JSON de validación.
+- [HECHA] **1.7 — CLI de extracción**: comando `uv run python -m src.extract --plataforma bluesky --termino "elecciones 2026"`.
+- [HECHA] **1.8 — Documentación del pipeline**: README de `pipeline/` con comandos y troubleshooting.
+
+---
+
+## FASES POSTERIORES (borrador — se detallan al cerrar Fase 1)
+
 - **FASE 2** — Modelo de features y etiquetado
 - **FASE 3** — RAG y buscador semántico
 - **FASE 4** — Casos documentados (contenido editorial)
 - **FASE 5** — Visualizaciones interactivas
-- **FASE 6** — Lanzamiento ydifusión
+- **FASE 6** — Lanzamiento y difusión
