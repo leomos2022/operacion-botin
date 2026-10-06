@@ -14,7 +14,7 @@
 - [HECHA] **0.5 — Página de Metodología**: definiciones (bot, troll, cuenta falsa, operador coordinado), flujo de recolección, criterios de etiquetado, limitaciones.
 - [HECHA] **0.6 — Páginas de contenido inicial**: índice de casos (vacío con estructura), La Industria (placeholder), Verifica (placeholder con formulario de reporte).
 - [HECHA] **0.7 — SEO y ADRs**: meta tags OG/Twitter, sitemap, robots.txt, primer ADR (selección de stack), primer ADR (categorización de bots).
-- [PENDIENTE] **0.8 — Auditoría de fuentes y deploy**: revisión de datos placeholder, deploy web a Cloudflare Pages, deploy API a Workers, smoke test post-deploy.
+- [HECHA] **0.8 — Auditoría de fuentes y deploy**: revisión de datos placeholder, deploy web a Cloudflare Pages, deploy API a Workers, smoke test post-deploy.
 
 ---
 

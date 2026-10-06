@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Boton from '../components/Boton.astro';
+---
+
+<BaseLayout
+  title="404 — Página no encontrada · Operación Botín"
+  description="La página que buscas no existe o fue movida."
+>
+  <section class="mx-auto max-w-3xl px-6 py-24 md:py-32 text-center">
+    <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">
+      Error 404
+    </p>
+    <h1 class="font-[var(--font-display)] text-6xl md:text-8xl mb-6">404</h1>
+    <p class="text-[var(--color-texto)] text-xl md:text-2xl mb-4">Esta página no existe.</p>
+    <p class="text-[var(--color-muted)] max-w-md mx-auto mb-10 leading-relaxed">
+      Quizá la movimos, quizá el enlace está roto, o quizá estás buscando algo que aún no publicamos. Volvamos al inicio.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <Boton variant="primario" href="/">Volver al inicio</Boton>
+      <Boton variant="secundario" href="/casos">Ver casos</Boton>
+      <Boton variant="fantasma" href="/metodologia">Ver metodología</Boton>
+    </div>
+  </section>
+</BaseLayout>
