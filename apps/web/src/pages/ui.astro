@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Boton from '../components/Boton.astro';
+import Tarjeta from '../components/Tarjeta.astro';
+import Badge from '../components/Badge.astro';
+import Stat from '../components/Stat.astro';
+import Tabla from '../components/Tabla.astro';
+---
+
+<BaseLayout
+  title="Sistema de diseño — Operación Botín"
+  description="Galería de componentes del sistema de diseño del observatorio."
+>
+  <section class="mx-auto max-w-7xl px-6 py-16">
+    <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo)] mb-4">
+      Fase 0.2 · Sistema de diseño
+    </p>
+    <h1 class="font-[var(--font-display)] text-4xl md:text-5xl mb-3">Componentes</h1>
+    <p class="text-[var(--color-muted)] max-w-2xl">
+      Galería de los componentes base construidos con los design tokens.
+      Cada componente vive en <code class="font-[var(--font-mono)] text-[var(--color-texto)]">src/components/</code> y se importa desde cualquier página o layout.
+    </p>
+
+    <!-- BOTONES -->
+    <div class="mt-16">
+      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Botones</h2>
+      <div class="space-y-6">
+        <div class="flex flex-wrap gap-3">
+          <Boton variant="primario">Primario</Boton>
+          <Boton variant="secundario">Secundario</Boton>
+          <Boton variant="fantasma">Fantasma</Boton>
+          <Boton variant="peligro">Peligro</Boton>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <Boton size="sm">Pequeño</Boton>
+          <Boton size="md">Mediano</Boton>
+          <Boton size="lg">Grande</Boton>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <Boton variant="primario" href="#">Como enlace</Boton>
+          <Boton variant="secundario" disabled>Desactivado</Boton>
+        </div>
+      </div>
+    </div>
+
+    <!-- BADGES -->
+    <div class="mt-16">
+      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Badges</h2>
+      <div class="flex flex-wrap gap-3">
+        <Badge variant="rojo" dot>Bot detectado</Badge>
+        <Badge variant="verde" dot>Verificado</Badge>
+        <Badge variant="ambar" dot>En revisión</Badge>
+        <Badge variant="muted">Sin clasificar</Badge>
+        <Badge variant="rojo">Cuenta falsa</Badge>
+        <Badge variant="verde">Operador coordinado</Badge>
+      </div>
+    </div>
+
+    <!-- TARJETAS -->
+    <div class="mt-16">
+      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Tarjetas</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        <Tarjeta>
+          <h3 slot="header" class="font-[var(--font-display)] text-lg mb-3">Default</h3>
+          <p class="text-sm text-[var(--color-muted)]">Tarjeta estándar con fondo surface y borde sutil.</p>
+        </Tarjeta>
+        <Tarjeta variant="destacada">
+          <h3 slot="header" class="font-[var(--font-display)] text-lg mb-3">Destacada</h3>
+          <p class="text-sm text-[var(--color-muted)]">Para casos o alertas que requieren atención visual.</p>
+        </Tarjeta>
+        <Tarjeta variant="bordeada">
+          <h3 slot="header" class="font-[var(--font-display)] text-lg mb-3">Bordeada</h3>
+          <p class="text-sm text-[var(--color-muted)]">Sin fondo, solo borde. Útil para secciones anidadas.</p>
+        </Tarjeta>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="mt-16">
+      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Stats</h2>
+      <p class="text-sm text-[var(--color-muted)] mb-4 max-w-2xl">
+        Regla editorial: toda métrica lleva fuente. El componente <code class="font-[var(--font-mono)] text-[var(--color-texto)]">Stat</code> muestra el atributo <code class="font-[var(--font-mono)] text-[var(--color-texto)]">fuente</code> como pie obligatorio.
+      </p>
+      <div class="grid gap-4 md:grid-cols-3">
+        <Stat etiqueta="Cuentas analizadas" valor="12.480" unidad="cuentas" fuente="Dataset OB-2026-Q1" />
+        <Stat etiqueta="Bots detectados" valor="832" unidad="cuentas" fuente="Etiquetado manual + heurística" variante="destacada" />
+        <Stat etiqueta="Casos documentados" valor="14" unidad="casos" fuente="Informes Operación Botín" />
+      </div>
+    </div>
+
+    <!-- TABLA -->
+    <div class="mt-16">
+      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Tabla</h2>
+      <p class="text-sm text-[var(--color-muted)] mb-4 max-w-2xl">
+        Identificadores seudonimizados según regla de privacidad (AGENT_RULES.md §4.4). Confianza en escala [0, 1].
+      </p>
+      <Tabla
+        caption="Muestra de cuentas etiquetadas (datos ilustrativos)"
+        encabezados={['Cuenta', 'Plataforma', 'Categoría', 'Confianza', 'Fecha']}
+        numericCols={[3]}
+        filas={[
+          ['@cuenta***01', 'Twitter', 'bot', '0.92', '2026-09-12'],
+          ['@cuenta***02', 'Telegram', 'troll', '0.78', '2026-09-14'],
+          ['@cuenta***03', 'Bluesky', 'cuenta_falsa', '0.85', '2026-09-18'],
+          ['@cuenta***04', 'Twitter', 'operador_coordinado', '0.88', '2026-09-22'],
+          ['@cuenta***05', 'Facebook', 'humano_verificado', '1.00', '2026-09-25'],
+        ]}
+      />
+      <p class="mt-3 text-xs text-[var(--color-muted)] font-[var(--font-mono)]">
+        Fuente: datos ilustrativos · Fase 0.2 · se reemplazan por dataset real en Fase 1.
+      </p>
+    </div>
+
+    <!-- TIPOGRAFÍA -->
+    <div class="mt-16">
+      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Tipografía</h2>
+      <div class="space-y-4 rounded-lg border border-white/5 bg-[var(--color-surface)] p-6">
+        <div>
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-1">Display · Archivo Black</p>
+          <p class="font-[var(--font-display)] text-3xl">Hay cuentas que no duermen.</p>
+        </div>
+        <div>
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-1">Body · Inter</p>
+          <p class="font-[var(--font-body)] text-base">El observatorio documenta el comportamiento, no las intenciones.</p>
+        </div>
+        <div>
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-1">Mono · JetBrains Mono</p>
+          <p class="font-[var(--font-mono)] text-sm">{"{ \"status\": \"ok\", \"cuentas\": 12480 }"}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOKENS -->
+    <div class="mt-16">
+      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Design tokens</h2>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="flex items-center gap-3 rounded-md border border-white/5 p-4">
+          <span class="h-8 w-8 rounded-md bg-[var(--color-bg)] border border-white/10"></span>
+          <div><p class="font-[var(--font-mono)] text-sm">--color-bg</p><p class="text-xs text-[var(--color-muted)]">#0E1116</p></div>
+        </div>
+        <div class="flex items-center gap-3 rounded-md border border-white/5 p-4">
+          <span class="h-8 w-8 rounded-md bg-[var(--color-surface)]"></span>
+          <div><p class="font-[var(--font-mono)] text-sm">--color-surface</p><p class="text-xs text-[var(--color-muted)]">#161B22</p></div>
+        </div>
+        <div class="flex items-center gap-3 rounded-md border border-white/5 p-4">
+          <span class="h-8 w-8 rounded-md bg-[var(--color-rojo)]"></span>
+          <div><p class="font-[var(--font-mono)] text-sm">--color-rojo</p><p class="text-xs text-[var(--color-muted)]">#E5484D</p></div>
+        </div>
+        <div class="flex items-center gap-3 rounded-md border border-white/5 p-4">
+          <span class="h-8 w-8 rounded-md bg-[var(--color-verde)]"></span>
+          <div><p class="font-[var(--font-mono)] text-sm">--color-verde</p><p class="text-xs text-[var(--color-muted)]">#3FB68B</p></div>
+        </div>
+        <div class="flex items-center gap-3 rounded-md border border-white/5 p-4">
+          <span class="h-8 w-8 rounded-md bg-[var(--color-ambar)]"></span>
+          <div><p class="font-[var(--font-mono)] text-sm">--color-ambar</p><p class="text-xs text-[var(--color-muted)]">#F5A524</p></div>
+        </div>
+        <div class="flex items-center gap-3 rounded-md border border-white/5 p-4">
+          <span class="h-8 w-8 rounded-md bg-[var(--color-muted)]"></span>
+          <div><p class="font-[var(--font-mono)] text-sm">--color-muted</p><p class="text-xs text-[var(--color-muted)]">#9BA7B4</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

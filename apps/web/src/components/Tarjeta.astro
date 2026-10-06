@@ -1,0 +1,24 @@
+---
+type Variant = 'default' | 'destacada' | 'bordeada';
+
+interface Props {
+  variant?: Variant;
+  class?: string;
+}
+
+const { variant = 'default', class: className = '' } = Astro.props;
+
+const variants: Record<Variant, string> = {
+  default: 'bg-[var(--color-surface)] border border-white/5',
+  destacada: 'bg-[var(--color-surface)] border border-[var(--color-rojo)]/20 shadow-lg shadow-[var(--color-rojo)]/5',
+  bordeada: 'bg-transparent border border-white/10',
+};
+
+const classes = `rounded-lg p-6 ${variants[variant]} ${className}`;
+---
+
+<div class={classes}>
+  <slot name="header" />
+  <slot />
+  <slot name="footer" />
+</div>

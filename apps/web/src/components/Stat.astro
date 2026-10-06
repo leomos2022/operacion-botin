@@ -1,0 +1,39 @@
+---
+interface Props {
+  etiqueta: string;
+  valor: string;
+  unidad?: string;
+  fuente?: string;
+  variante?: 'default' | 'destacada';
+  class?: string;
+}
+
+const {
+  etiqueta,
+  valor,
+  unidad,
+  fuente,
+  variante = 'default',
+  class: className = '',
+} = Astro.props;
+
+const base = 'rounded-lg border p-5 bg-[var(--color-surface)] flex flex-col gap-1';
+const variantes = {
+  default: 'border-white/5',
+  destacada: 'border-[var(--color-rojo)]/20',
+};
+---
+
+<div class={`${base} ${variantes[variante]} ${className}`}>
+  <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)]">
+    {etiqueta}
+  </p>
+  <p class="font-[var(--font-display)] text-3xl text-[var(--color-texto)]">
+    {valor}{unidad && <span class="text-base text-[var(--color-muted)] ml-1.5 font-[var(--font-body)]">{unidad}</span>}
+  </p>
+  {fuente && (
+    <p class="mt-1 text-xs text-[var(--color-muted)] font-[var(--font-mono)]">
+      <span class="opacity-60">Fuente:</span> {fuente}
+    </p>
+  )}
+</div>

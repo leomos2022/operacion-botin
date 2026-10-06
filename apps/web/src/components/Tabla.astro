@@ -1,0 +1,43 @@
+---
+interface Props {
+  encabezados: string[];
+  filas: (string | number)[][];
+  numericCols?: number[];
+  caption?: string;
+  class?: string;
+}
+
+const {
+  encabezados,
+  filas,
+  numericCols = [],
+  caption,
+  class: className = '',
+} = Astro.props;
+---
+
+<div class={`overflow-x-auto rounded-lg border border-white/5 ${className}`}>
+  <table class="w-full text-sm">
+    {caption && <caption class="sr-only">{caption}</caption>}
+    <thead class="bg-[var(--color-surface)]">
+      <tr>
+        {encabezados.map((h, i) => (
+          <th class={`px-4 py-3 font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] border-b border-white/5 ${numericCols.includes(i) ? 'text-right' : 'text-left'}`}>
+            {h}
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-white/5">
+      {filas.map((fila) => (
+        <tr class="hover:bg-white/[0.02] transition-colors">
+          {fila.map((celda, i) => (
+            <td class={`px-4 py-3 ${numericCols.includes(i) ? 'text-right font-[var(--font-mono)] text-[var(--color-texto)]' : 'text-[var(--color-texto)]'}`}>
+              {celda}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
