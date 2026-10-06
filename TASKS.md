@@ -11,7 +11,7 @@
 - [HECHA] **0.2 — Sistema de diseño**: tailwind config completo, componentes base (Botón, Tarjeta, Badge, Stat, Tabla), tokens de tipografía y espaciado, storybook o página de muestra.
 - [HECHA] **0.3 — Layout y navegación**: header responsive con menú móvil, footer con licencias, layout base reutilizable, rutas (índice, casos, industria, metodología, verifica).
 - [HECHA] **0.4 — Home scrollytelling**: hero con headline, secciones narrativas con scroll, visualizaciones placeholder, CTA a metodología.
-- [PENDIENTE] **0.5 — Página de Metodología**: definiciones (bot, troll, cuenta falsa, operador coordinado), flujo de recolección, criterios de etiquetado, limitaciones.
+- [HECHA] **0.5 — Página de Metodología**: definiciones (bot, troll, cuenta falsa, operador coordinado), flujo de recolección, criterios de etiquetado, limitaciones.
 - [PENDIENTE] **0.6 — Páginas de contenido inicial**: índice de casos (vacío con estructura), La Industria (placeholder), Verifica (placeholder con formulario de reporte).
 - [PENDIENTE] **0.7 — SEO y ADRs**: meta tags OG/Twitter, sitemap, robots.txt, primer ADR (selección de stack), primer ADR (categorización de bots).
 - [PENDIENTE] **0.8 — Auditoría de fuentes y deploy**: revisión de datos placeholder, deploy web a Cloudflare Pages, deploy API a Workers, smoke test post-deploy.

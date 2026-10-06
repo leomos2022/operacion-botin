@@ -2,6 +2,16 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Boton from '../components/Boton.astro';
 import Badge from '../components/Badge.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+
+const secciones = [
+  { id: 'definiciones', num: '01', titulo: 'Definiciones' },
+  { id: 'recoleccion', num: '02', titulo: 'Recolección de datos' },
+  { id: 'etiquetado', num: '03', titulo: 'Criterios de etiquetado' },
+  { id: 'limitaciones', num: '04', titulo: 'Limitaciones' },
+  { id: 'correccion', num: '05', titulo: 'Corrección y retracto' },
+  { id: 'glosario', num: '06', titulo: 'Glosario' },
+];
 ---
 
 <BaseLayout
@@ -9,53 +19,330 @@ import Badge from '../components/Badge.astro';
   title="Metodología — Operación Botín"
   description="Cómo documentamos, etiquetamos y verificamos cuentas y operaciones de desinformación en Colombia."
 >
-  <section class="mx-auto max-w-7xl px-6 py-16">
-    <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">
-      Fase 0.3 · placeholder
-    </p>
-    <h1 class="font-[var(--font-display)] text-4xl md:text-5xl mb-4">Metodología</h1>
-    <p class="text-[var(--color-muted)] max-w-2xl text-lg leading-relaxed">
-      Sin metodología abierta no hay observatorio. Aquí explicamos qué categorizamos, cómo etiquetamos y dónde están los límites de lo que podemos afirmar.
-    </p>
-
-    <div class="mt-12">
-      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Categorías que usamos</h2>
-      <div class="grid gap-4 md:grid-cols-2">
-        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
-          <div class="flex items-center gap-2 mb-2"><Badge variant="rojo">Bot</Badge></div>
-          <p class="text-sm text-[var(--color-muted)]">Cuenta con comportamiento automatizado demostrable (publicación programada, patrones repetitivos, API no oficial). No implica intención política.</p>
-        </div>
-        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
-          <div class="flex items-center gap-2 mb-2"><Badge variant="ambar">Troll</Badge></div>
-          <p class="text-sm text-[var(--color-muted)]">Cuenta operada por una persona que persigue hostigar, polarizar o desviar conversaciones. Hay un humano detrás, no es automatización.</p>
-        </div>
-        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
-          <div class="flex items-center gap-2 mb-2"><Badge variant="rojo">Cuenta falsa</Badge></div>
-          <p class="text-sm text-[var(--color-muted)]">Identidad fabricada: foto robada o generada, datos inconsistentes, ninguna huella verificable de la persona que dice ser.</p>
-        </div>
-        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
-          <div class="flex items-center gap-2 mb-2"><Badge variant="verde">Operador coordinado</Badge></div>
-          <p class="text-sm text-[var(--color-muted)]">Conjunto de cuentas que actúan en sincronía (timing, narrativa, hashtags) de forma que sugiere dirección central. No necesariamente bots.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="mt-12 rounded-lg border-l-2 border-[var(--color-rojo)] bg-[var(--color-surface)] p-6">
-      <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Regla editorial fundamental</p>
-      <p class="text-[var(--color-texto)] text-lg leading-relaxed">
-        <strong>"Bot" no es persona que discrepa.</strong> Nunca etiquetamos como bot a alguien solo por disentir. La categoría requiere evidencia técnica de automatización. Confundir disenso con automatización es exactamente lo que combate este observatorio.
+  <section class="border-b border-white/5">
+    <div class="mx-auto max-w-7xl px-6 py-16 md:py-24">
+      <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">Documento de referencia · v0.1</p>
+      <h1 class="font-[var(--font-display)] text-4xl md:text-6xl leading-tight mb-6 max-w-4xl">Metodología</h1>
+      <p class="text-[var(--color-muted)] text-lg md:text-xl max-w-3xl leading-relaxed">
+        Sin metodología abierta no hay observatorio. Este documento define qué categorizamos, cómo etiquetamos, qué fuentes aceptamos y dónde están los límites de lo que podemos afirmar. Está en español, está pensado para replicarse, y se actualiza con cada corrección visible.
       </p>
-    </div>
-
-    <div class="mt-12 rounded-lg border border-dashed border-white/10 bg-[var(--color-surface)] p-8 text-center">
-      <Badge variant="ambar" dot>Documento completo en Fase 0.5</Badge>
-      <p class="mt-4 text-[var(--color-muted)] max-w-xl mx-auto">
-        La versión completa de la metodología (definiciones, heurísticas, pipeline de datos, criterios de etiquetado, limitaciones) se publica en Fase 0.5.
-      </p>
-      <div class="mt-6 flex justify-center gap-3">
-        <Boton variant="secundario" href="/casos">Ver casos</Boton>
-        <Boton variant="fantasma" href="/">Volver al inicio</Boton>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <Badge variant="rojo">v0.1 · octubre 2026</Badge>
+        <Badge variant="muted">Licencia: CC BY-SA 4.0</Badge>
+        <Badge variant="verde" dot>Documento vivo</Badge>
       </div>
     </div>
   </section>
+
+  <div class="mx-auto max-w-7xl px-6 py-16 md:py-24 grid gap-12 lg:grid-cols-[260px_1fr]">
+    <aside class="hidden lg:block">
+      <div class="sticky top-24">
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-4">Contenido</p>
+        <nav>
+          <ul class="space-y-2">
+            {secciones.map((s) => (
+              <li>
+                <a href={`#${s.id}`} class="group flex items-start gap-3 text-sm text-[var(--color-muted)] hover:text-[var(--color-texto)] transition-colors">
+                  <span class="font-[var(--font-mono)] text-xs text-[var(--color-rojo-claro)] mt-0.5">{s.num}</span>
+                  <span>{s.titulo}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div class="mt-8 pt-6 border-t border-white/5">
+          <Boton variant="fantasma" href="/verifica" size="sm">Reportar una cuenta →</Boton>
+        </div>
+      </div>
+    </aside>
+
+    <article class="max-w-3xl space-y-20">
+
+      <ScrollReveal as="section" id="definiciones">
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">01 · Definiciones</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-4xl mb-6">Qué categorizamos y qué no.</h2>
+
+        <p class="text-[var(--color-muted)] leading-relaxed mb-6">
+          La categoría <strong class="text-[var(--color-texto)]">"bot"</strong> se usa con ligereza en el debate público para descalificar al contrario. Ese uso es exactamente lo que este observatorio combate. Aquí una cuenta solo se etiqueta como bot si hay <strong class="text-[var(--color-texto)]">evidencia técnica de automatización</strong>. Disentir, criticar o repetir argumentos de un partido no convierte a nadie en bot.
+        </p>
+
+        <p class="text-[var(--color-muted)] leading-relaxed mb-10">
+          Diferenciamos cuatro categorías. Cada una tiene criterios técnicos, no políticos. Una cuenta puede caer en varias a la vez (p. ej. un bot operado por una cuenta falsa): en ese caso se etiquetan ambas y se explica la relación.
+        </p>
+
+        <div class="space-y-6">
+          <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <Badge variant="rojo" dot>Bot</Badge>
+              <span class="font-[var(--font-mono)] text-xs text-[var(--color-muted)]">categoría técnica</span>
+            </div>
+            <p class="text-[var(--color-texto)] leading-relaxed mb-3">Cuenta con comportamiento automatizado demostrable.</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed mb-4">
+              Esto incluye: publicación programada con patrones no humanos (publicar exactamente cada N segundos sin variación), respuestas en milisegundos a eventos complejos, uso de API no oficial, o hilos generados por plantilla. La mera sospecha no basta: requerimos al menos dos señales técnicas independientes.
+            </p>
+            <p class="text-xs text-[var(--color-muted)] font-[var(--font-mono)]">
+              No implica intención política. Un bot puede promocionar criptomonedas, spam de marketing o coordinar harassment. La categoría describe el <em>cómo</em>, no el <em>para qué</em>.
+            </p>
+          </div>
+
+          <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <Badge variant="ambar" dot>Troll</Badge>
+              <span class="font-[var(--font-mono)] text-xs text-[var(--color-muted)]">categoría conductual</span>
+            </div>
+            <p class="text-[var(--color-texto)] leading-relaxed mb-3">Cuenta operada por una persona que persigue hostigar, polarizar o desviar conversaciones.</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed mb-4">
+              Hay un humano detrás. No es automatización. El comportamiento típicamente incluye: ataques ad hominem repetidos, hilos diseñados para fragmentar debate, respuesta rápida a figuras públicas con intención de acosar, o coordinación implícita con otros trolls en una narrativa.
+            </p>
+            <p class="text-xs text-[var(--color-muted)] font-[var(--font-mono)]">
+              Esta categoría es la más difícil de etiquetar y la que más revisión humana requiere. Una cuenta puede ser abrasiva sin ser troll; el patrón sostenido es lo que cuenta.
+            </p>
+          </div>
+
+          <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <Badge variant="rojo" dot>Cuenta falsa</Badge>
+              <span class="font-[var(--font-mono)] text-xs text-[var(--color-muted)]">categoría de identidad</span>
+            </div>
+            <p class="text-[var(--color-texto)] leading-relaxed mb-3">Identidad fabricada.</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed mb-4">
+              Foto de perfil robada o generada por IA, datos biográficos inconsistentes (p. ej. "periodista" sin portfolio verificable), historial de cuenta que no encaja con la persona que dice ser, o conexión técnica con otras cuentas falsas (misma IP de origen, mismo patrón de creación, misma plantilla de bio).
+            </p>
+            <p class="text-xs text-[var(--color-muted)] font-[var(--font-mono)]">
+              La verificación se hace con búsqueda inversa de imágenes, análisis de consistencia biográfica y revisión de huella digital de la cuenta. Nunca se afirma "falsa" solo por carecer de verificación azul: muchas cuentas legítimas no la tienen.
+            </p>
+          </div>
+
+          <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <Badge variant="verde" dot>Operador coordinado</Badge>
+              <span class="font-[var(--font-mono)] text-xs text-[var(--color-muted)]">categoría de grupo</span>
+            </div>
+            <p class="text-[var(--color-texto)] leading-relaxed mb-3">Conjunto de cuentas que actúan en sincronía de forma que sugiere dirección central.</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed mb-4">
+              Esto se detecta por: publicación casi simultánea (ventanas de segundos) del mismo contenido o variaciones menores, uso coordinado de hashtags que no son tendencia orgánica, narrativa común en un periodo corto, o patrones de horario que sugieren un turno de trabajo. No necesariamente son bots: pueden ser humanos pagados.
+            </p>
+            <p class="text-xs text-[var(--color-muted)] font-[var(--font-mono)]">
+              Esta categoría se aplica al conjunto, no a cuentas individuales. Decir "operador coordinado" requiere identificar al menos 5 cuentas con comportamiento sincronizado sostenido.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8 rounded-lg border-l-2 border-[var(--color-rojo)] bg-[var(--color-surface)] p-6">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Regla editorial fundamental</p>
+          <p class="text-[var(--color-texto)] text-lg leading-relaxed">
+            <strong>"Bot" no es persona que discrepa.</strong> Nunca etiquetamos como bot a alguien solo por disentir. La categoría requiere evidencia técnica de automatización. Confundir disenso con automatización es exactamente lo que combate este observatorio.
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal as="section" id="recoleccion">
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">02 · Recolección de datos</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-4xl mb-6">De dónde sale la información.</h2>
+
+        <p class="text-[var(--color-muted)] leading-relaxed mb-6">
+          Solo trabajamos con <strong class="text-[var(--color-texto)]">datos públicos</strong>. No compramos credenciales filtradas, no accedemos a mensajes privados, no usamos APIs internas filtradas. Toda la información proviene de endpoints públicos de las plataformas o de capturas realizadas por ciudadanos que nos las envían como reporte.
+        </p>
+
+        <p class="text-[var(--color-muted)] leading-relaxed mb-8">
+          Cada registro capturado lleva: marca de tiempo (UTC), plataforma, URL original del contenido público, método de captura (API oficial, scraping de página pública, reporte ciudadano) y hash del contenido para detectar ediciones posteriores.
+        </p>
+
+        <div class="space-y-4 mb-8">
+          <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Twitter / X</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">
+              API v2 con bearer token, dentro de los límites del tier gratuito. Capturamos timelines públicos, respuestas a tweets de cuentas de interés público (medios, autoridades, figuras políticas) y mentions de hashtags monitoreados. <strong class="text-[var(--color-texto)]">No capturamos</strong> mensajes directos ni datos de cuentas privadas.
+            </p>
+          </div>
+          <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Telegram</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">
+              Solo canales públicos. Usamos la API de bots de Telegram con un bot observador añadido a cada canal monitoreado. No participamos en grupos privados. Los canales se seleccionan por mención en investigaciones previas o por reporte ciudadano verificable.
+            </p>
+          </div>
+          <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Bluesky</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">
+              API atproto pública. Capturamos posts públicos y respuestas en firehose filtrada por cuentas de interés. Bluesky facilita la investigación porque el protocolo es abierto; registramos el DID de cada cuenta (identificador permanente).
+            </p>
+          </div>
+          <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Facebook</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">
+              Limitado a páginas públicas. No usamos scraping automatizado por restricciones de ToS. Trabajamos principalmente con capturas ciudadanas verificadas y con datos publicados por Facebook en su Transparency Center.
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-lg border-l-2 border-[var(--color-verde)] bg-[var(--color-surface)] p-6">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-verde-claro)] mb-2">Rate-limit y ética</p>
+          <p class="text-[var(--color-muted)] leading-relaxed">
+            Respetamos los límites de cada API. No hacemos scraping agresivo. No capturamos datos en masa de cuentas personales sin contexto de investigación. Si una plataforma nos bloquea, lo documentamos y buscamos alternativas públicas; no eludimos el bloqueo.
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal as="section" id="etiquetado">
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">03 · Criterios de etiquetado</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-4xl mb-6">Cómo decidimos la categoría.</h2>
+
+        <p class="text-[var(--color-muted)] leading-relaxed mb-6">
+          Cada etiqueta lleva un <strong class="text-[var(--color-texto)]">grado de confianza</strong> entre 0 y 1. No publicamos una etiqueta con confianza menor a 0.7. La confianza se calcula combinando heurísticas automáticas y revisión humana, y se documenta el razonamiento en el expediente interno de cada cuenta.
+        </p>
+
+        <p class="text-[var(--color-muted)] leading-relaxed mb-8">
+          Las heurísticas que aplicamos se agrupan en tres familias. Una cuenta necesita señales en al menos dos familias para recibir una etiqueta; una sola señal no basta.
+        </p>
+
+        <div class="space-y-4 mb-8">
+          <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+            <p class="font-[var(--font-display)] text-lg mb-2">A. Señales temporales</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">
+              Distribución de horarios de publicación (un humano duerme; un bot no), intervalos entre posts (regularidad mecánica vs. variación humana), picos de actividad sincronizada entre cuentas, y publicación en momentos imposibles (mismo segundo, milisegundos de diferencia entre cuentas distintas).
+            </p>
+          </div>
+          <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+            <p class="font-[var(--font-display)] text-lg mb-2">B. Señales de contenido</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">
+              Repetición de frases idénticas o casi idénticas entre cuentas, uso de plantillas detectables, hashtags que aparecen simultáneamente en cuentas desconectadas, o contenido copiado de fuentes externas (web, otros posts) sin variación. Se mide con similitud de coseno sobre embeddings del texto.
+            </p>
+          </div>
+          <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+            <p class="font-[var(--font-display)] text-lg mb-2">C. Señales de grafo</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">
+              Estructura de interacciones: cuentas que solo se responden entre sí, clusters densos sin conexión externa, patrones de seguimiento recíproco en masa, o cuentas creadas en la misma ventana de tiempo con biografías similares. Se construye un grafo dirigido y se aplican métricas de centralidad y comunidad.
+            </p>
+          </div>
+        </div>
+
+        <div class="rounded-lg border-l-2 border-[var(--color-ambar)] bg-[var(--color-surface)] p-6">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-ambar-claro)] mb-2">Revisión humana obligatoria</p>
+          <p class="text-[var(--color-muted)] leading-relaxed">
+            Ninguna etiqueta se publica sin revisión humana. El pipeline automático produce una etiqueta candidata y su confianza; un revisor humano valida la evidencia, ajusta la confianza y documenta el razonamiento. Si dos revisores discrepan, la cuenta queda en "sin clasificar" hasta resolverlo.
+          </p>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal as="section" id="limitaciones">
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">04 · Limitaciones</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-4xl mb-6">Qué no podemos afirmar.</h2>
+
+        <p class="text-[var(--color-muted)] leading-relaxed mb-6">
+          La credibilidad del observatorio depende de declarar sus límites. Esto es lo que <strong class="text-[var(--color-texto)]">no</strong> podemos hacer, y por qué.
+        </p>
+
+        <ul class="space-y-5">
+          <li class="flex gap-4">
+            <span class="font-[var(--font-mono)] text-[var(--color-rojo-claro)] flex-shrink-0">01</span>
+            <div>
+              <p class="text-[var(--color-texto)] font-semibold mb-1">No identificamos al operador humano detrás de un bot.</p>
+              <p class="text-sm text-[var(--color-muted)] leading-relaxed">Podemos decir que una cuenta es automatizada. Atribuirla a una persona o institución específica requiere evidencia adicional (p. ej. investigación periodística firmada o informe de autoridad) que no siempre tenemos. No especulamos.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-[var(--font-mono)] text-[var(--color-rojo-claro)] flex-shrink-0">02</span>
+            <div>
+              <p class="text-[var(--color-texto)] font-semibold mb-1">No afirmamos intenciones.</p>
+              <p class="text-sm text-[var(--color-muted)] leading-relaxed">Describimos el comportamiento observado: "esta cuenta publicó 1.200 veces en 6 horas con plantilla repetida". No decimos "para influir en la elección X" salvo cuando un informe con firma lo atribuye explícitamente.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-[var(--font-mono)] text-[var(--color-rojo-claro)] flex-shrink-0">03</span>
+            <div>
+              <p class="text-[var(--color-texto)] font-semibold mb-1">No medimos impacto real en opiniones o votos.</p>
+              <p class="text-sm text-[var(--color-muted)] leading-relaxed">Medir si una operación cambió la opinión pública requiere metodología de encuestas que está fuera de nuestro alcance. Reportamos presencia, volumen y patrón, no efecto causal.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-[var(--font-mono)] text-[var(--color-rojo-claro)] flex-shrink-0">04</span>
+            <div>
+              <p class="text-[var(--color-texto)] font-semibold mb-1">No tenemos cobertura completa.</p>
+              <p class="text-sm text-[var(--color-muted)] leading-relaxed">Monitoreamos 4 plataformas y un conjunto acotado de cuentas y hashtags. Hay desinformación que opera en canales privados (WhatsApp, Telegram cerrados) que no podemos ver. La ausencia de evidencia no es evidencia de ausencia.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-[var(--font-mono)] text-[var(--color-rojo-claro)] flex-shrink-0">05</span>
+            <div>
+              <p class="text-[var(--color-texto)] font-semibold mb-1">No somos autoridad judicial ni periodística.</p>
+              <p class="text-sm text-[var(--color-muted)] leading-relaxed">Nuestras etiquetas son análisis técnico. No constituyen acusación penal ni reemplazan investigación periodística firmada. Cualquiera puede usar nuestros datos como insumo; la responsabilidad de la atribución final es de quien la hace.</p>
+            </div>
+          </li>
+        </ul>
+      </ScrollReveal>
+
+      <ScrollReveal as="section" id="correccion">
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">05 · Corrección y retracto</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-4xl mb-6">Cómo gestionamos los errores.</h2>
+
+        <p class="text-[var(--color-muted)] leading-relaxed mb-6">
+          Equivocarse es parte del método. Lo que da credibilidad no es no equivocarse, sino corregir visible. Toda corrección lleva fecha, motivo y firma del revisor. Nunca borramos silenciosamente.
+        </p>
+
+        <div class="grid gap-4 md:grid-cols-3 mb-8">
+          <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Corrección menor</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Error de dato, link roto, typo en cifra. Se edita el caso y se añade nota al pie con fecha.</p>
+          </div>
+          <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-ambar-claro)] mb-2">Corrección mayor</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Cambio de categoría de una cuenta o cifra agregada. Se mantiene el original tachado, se añade el nuevo y se explica el motivo.</p>
+          </div>
+          <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-verde-claro)] mb-2">Retracto</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">El caso no se sostiene. Se publica una retractación al inicio del caso, se mantiene el contenido original y se explica qué falló.</p>
+          </div>
+        </div>
+
+        <p class="text-[var(--color-muted)] leading-relaxed">
+          Si detectas un error, escríbenos a
+          <a href="mailto:correcciones@operacionbotin.co" class="text-[var(--color-rojo-claro)] hover:underline font-[var(--font-mono)]">correcciones@operacionbotin.co</a>
+          con la referencia del caso. Respondemos en máximo 7 días hábiles.
+        </p>
+      </ScrollReveal>
+
+      <ScrollReveal as="section" id="glosario">
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">06 · Glosario</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-4xl mb-6">Términos clave.</h2>
+
+        <dl class="space-y-5">
+          <div>
+            <dt class="text-[var(--color-texto)] font-semibold mb-1">Astroturfing</dt>
+            <dd class="text-sm text-[var(--color-muted)] leading-relaxed">Campaña que busca aparentar apoyo popular espontáneo pero que en realidad es coordinada. No requiere bots; puede hacerse con voluntarios reales.</dd>
+          </div>
+          <div>
+            <dt class="text-[var(--color-texto)] font-semibold mb-1">Brigading</dt>
+            <dd class="text-sm text-[var(--color-muted)] leading-relaxed">Coordinación de un grupo para inundar un objetivo (cuenta, hashtag, mención) con mensajes, generalmente para silenciar o acosar.</dd>
+          </div>
+          <div>
+            <dt class="text-[var(--color-texto)] font-semibold mb-1">Confianza (grado de)</dt>
+            <dd class="text-sm text-[var(--color-muted)] leading-relaxed">Número entre 0 y 1 que expresa cuán segura es una etiqueta. No publicamos etiquetas con confianza &lt; 0.7.</dd>
+          </div>
+          <div>
+            <dt class="text-[var(--color-texto)] font-semibold mb-1">Grafo de interacciones</dt>
+            <dd class="text-sm text-[var(--color-muted)] leading-relaxed">Representación matemática de quién responde a quién en una plataforma. Permite detectar clusters y cuentas que solo interactúan entre sí.</dd>
+          </div>
+          <div>
+            <dt class="text-[var(--color-texto)] font-semibold mb-1">Heurística</dt>
+            <dd class="text-sm text-[var(--color-muted)] leading-relaxed">Regla práctica que produce una etiqueta candidata. No es prueba, es señal. Varias heurísticas combinadas sí constituyen evidencia.</dd>
+          </div>
+          <div>
+            <dt class="text-[var(--color-texto)] font-semibold mb-1">Seudonimización</dt>
+            <dd class="text-sm text-[var(--color-muted)] leading-relaxed">Reemplazo del identificador real de una cuenta por uno sintético (p. ej. "@cuenta***01") para proteger identidad mientras se preserva el seguimiento longitudinal.</dd>
+          </div>
+        </dl>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-8 text-center">
+          <p class="font-[var(--font-display)] text-2xl mb-4">¿Tienes una cuenta que reportar?</p>
+          <p class="text-[var(--color-muted)] mb-6 max-w-md mx-auto">
+            Tu reporte anónimo fortalece el observatorio. Te explicamos qué información necesitamos.
+          </p>
+          <Boton variant="primario" href="/verifica">Ir a Verifica</Boton>
+        </div>
+      </ScrollReveal>
+
+    </article>
+  </div>
 </BaseLayout>
