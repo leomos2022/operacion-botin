@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Boton from '../components/Boton.astro';
+import Badge from '../components/Badge.astro';
+---
+
+<BaseLayout
+  rutaActiva="/casos"
+  title="Casos — Operación Botín"
+  description="Índice de casos documentados de bots y operaciones de desinformación en Colombia."
+>
+  <section class="mx-auto max-w-7xl px-6 py-16">
+    <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">
+      Fase 0.3 · placeholder
+    </p>
+    <h1 class="font-[var(--font-display)] text-4xl md:text-5xl mb-4">Casos documentados</h1>
+    <p class="text-[var(--color-muted)] max-w-2xl text-lg leading-relaxed">
+      Cada caso registra el comportamiento observado, las plataformas involucradas, las fuentes y el método de análisis. Sin fuentes no hay caso.
+    </p>
+
+    <div class="mt-12 rounded-lg border border-dashed border-white/10 bg-[var(--color-surface)] p-10 text-center">
+      <Badge variant="ambar" dot>En preparación</Badge>
+      <h2 class="font-[var(--font-display)] text-2xl mt-4 mb-2">Aún no hay casos publicados</h2>
+      <p class="text-[var(--color-muted)] max-w-md mx-auto mb-6">
+        Los primeros casos se publicarán en Fase 0.6. Mientras tanto, puedes revisar la metodología para entender cómo los documentamos.
+      </p>
+      <Boton variant="secundario" href="/metodologia">Ver metodología</Boton>
+    </div>
+
+    <div class="mt-16">
+      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Qué encontrarás en cada caso</h2>
+      <ul class="space-y-3 text-[var(--color-muted)]">
+        <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">01</span><span><strong class="text-[var(--color-texto)]">Resumen y contexto</strong> — qué pasó, cuándo, dónde.</span></li>
+        <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">02</span><span><strong class="text-[var(--color-texto)]">Cuentas involucradas</strong> — identificadores seudonimizados y categorización.</span></li>
+        <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">03</span><span><strong class="text-[var(--color-texto)]">Patrones observados</strong> — volumen, horarios, coordinación, narrativas.</span></li>
+        <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">04</span><span><strong class="text-[var(--color-texto)]">Fuentes</strong> — URLs, capturas, datasets, informes referenciados.</span></li>
+        <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">05</span><span><strong class="text-[var(--color-texto)]">Limitaciones</strong> — qué no podemos afirmar y por qué.</span></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Boton from '../components/Boton.astro';
+import Badge from '../components/Badge.astro';
+---
+
+<BaseLayout
+  rutaActiva="/metodologia"
+  title="Metodología — Operación Botín"
+  description="Cómo documentamos, etiquetamos y verificamos cuentas y operaciones de desinformación en Colombia."
+>
+  <section class="mx-auto max-w-7xl px-6 py-16">
+    <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">
+      Fase 0.3 · placeholder
+    </p>
+    <h1 class="font-[var(--font-display)] text-4xl md:text-5xl mb-4">Metodología</h1>
+    <p class="text-[var(--color-muted)] max-w-2xl text-lg leading-relaxed">
+      Sin metodología abierta no hay observatorio. Aquí explicamos qué categorizamos, cómo etiquetamos y dónde están los límites de lo que podemos afirmar.
+    </p>
+
+    <div class="mt-12">
+      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Categorías que usamos</h2>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+          <div class="flex items-center gap-2 mb-2"><Badge variant="rojo">Bot</Badge></div>
+          <p class="text-sm text-[var(--color-muted)]">Cuenta con comportamiento automatizado demostrable (publicación programada, patrones repetitivos, API no oficial). No implica intención política.</p>
+        </div>
+        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+          <div class="flex items-center gap-2 mb-2"><Badge variant="ambar">Troll</Badge></div>
+          <p class="text-sm text-[var(--color-muted)]">Cuenta operada por una persona que persigue hostigar, polarizar o desviar conversaciones. Hay un humano detrás, no es automatización.</p>
+        </div>
+        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+          <div class="flex items-center gap-2 mb-2"><Badge variant="rojo">Cuenta falsa</Badge></div>
+          <p class="text-sm text-[var(--color-muted)]">Identidad fabricada: foto robada o generada, datos inconsistentes, ninguna huella verificable de la persona que dice ser.</p>
+        </div>
+        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+          <div class="flex items-center gap-2 mb-2"><Badge variant="verde">Operador coordinado</Badge></div>
+          <p class="text-sm text-[var(--color-muted)]">Conjunto de cuentas que actúan en sincronía (timing, narrativa, hashtags) de forma que sugiere dirección central. No necesariamente bots.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 rounded-lg border-l-2 border-[var(--color-rojo)] bg-[var(--color-surface)] p-6">
+      <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Regla editorial fundamental</p>
+      <p class="text-[var(--color-texto)] text-lg leading-relaxed">
+        <strong>"Bot" no es persona que discrepa.</strong> Nunca etiquetamos como bot a alguien solo por disentir. La categoría requiere evidencia técnica de automatización. Confundir disenso con automatización es exactamente lo que combate este observatorio.
+      </p>
+    </div>
+
+    <div class="mt-12 rounded-lg border border-dashed border-white/10 bg-[var(--color-surface)] p-8 text-center">
+      <Badge variant="ambar" dot>Documento completo en Fase 0.5</Badge>
+      <p class="mt-4 text-[var(--color-muted)] max-w-xl mx-auto">
+        La versión completa de la metodología (definiciones, heurísticas, pipeline de datos, criterios de etiquetado, limitaciones) se publica en Fase 0.5.
+      </p>
+      <div class="mt-6 flex justify-center gap-3">
+        <Boton variant="secundario" href="/casos">Ver casos</Boton>
+        <Boton variant="fantasma" href="/">Volver al inicio</Boton>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

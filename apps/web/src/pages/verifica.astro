@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Boton from '../components/Boton.astro';
+import Badge from '../components/Badge.astro';
+import Tarjeta from '../components/Tarjeta.astro';
+---
+
+<BaseLayout
+  rutaActiva="/verifica"
+  title="Verifica — Operación Botín"
+  description="¿Viste una cuenta o mensaje sospechoso? Repórtalo. Te explicamos qué información necesitamos y cómo la tratamos."
+>
+  <section class="mx-auto max-w-7xl px-6 py-16">
+    <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">
+      Fase 0.3 · placeholder
+    </p>
+    <h1 class="font-[var(--font-display)] text-4xl md:text-5xl mb-4">Verifica</h1>
+    <p class="text-[var(--color-muted)] max-w-2xl text-lg leading-relaxed">
+      La observación ciudadana fortalece el observatorio. Si ves una cuenta o mensaje que parezca parte de una operación coordinada, repórtalo. Te decimos qué necesitamos y cómo protegemos tu identidad.
+    </p>
+
+    <div class="mt-12">
+      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Cómo funciona el reporte</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        <Tarjeta>
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">01 · Recibe</p>
+          <p class="text-sm text-[var(--color-muted)]">Nos envías la URL o captura de la cuenta o mensaje. Sin datos personales tuyos.</p>
+        </Tarjeta>
+        <Tarjeta>
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">02 · Verifica</p>
+          <p class="text-sm text-[var(--color-muted)]">Aplicamos el pipeline de etiquetado y revisión humana. Te respondemos con el resultado del análisis.</p>
+        </Tarjeta>
+        <Tarjeta>
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">03 · Documenta</p>
+          <p class="text-sm text-[var(--color-muted)]">Si confirma un patrón, lo agregamos a la base de datos y aparece (sin datos tuyos) en el índice de casos.</p>
+        </Tarjeta>
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Formulario de reporte</h2>
+      <div class="rounded-lg border border-dashed border-white/10 bg-[var(--color-surface)] p-8 text-center">
+        <Badge variant="ambar" dot>Formulario activo en Fase 0.6</Badge>
+        <p class="mt-4 text-[var(--color-muted)] max-w-xl mx-auto">
+          Mientras tanto, puedes escribirnos a
+          <a href="mailto:reportes@operacionbotin.co" class="text-[var(--color-rojo-claro)] hover:underline font-[var(--font-mono)]">reportes@operacionbotin.co</a>
+          con estos datos:
+        </p>
+        <ul class="mt-6 text-left text-sm text-[var(--color-muted)] max-w-md mx-auto space-y-2">
+          <li>• URL de la cuenta o mensaje</li>
+          <li>• Plataforma (Twitter, Telegram, etc.)</li>
+          <li>• Fecha en la que lo viste</li>
+          <li>• Contexto (por qué te parece sospechoso)</li>
+          <li>• <span class="text-[var(--color-texto)]">Opcional</span>: captura de pantalla</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 rounded-lg border-l-2 border-[var(--color-verde)] bg-[var(--color-surface)] p-6">
+      <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-verde-claro)] mb-2">Privacidad</p>
+      <p class="text-[var(--color-muted)] leading-relaxed">
+        No guardamos tu identidad. Tampoco publicamos identificadores de cuentas sin seudonimizar (regla editorial §4.4). El reporte es anónimo por defecto; si quieres crédito, dilo explícitamente.
+      </p>
+    </div>
+
+    <div class="mt-12 text-center">
+      <Boton variant="primario" href="/metodologia">Conoce la metodología</Boton>
+    </div>
+  </section>
+</BaseLayout>

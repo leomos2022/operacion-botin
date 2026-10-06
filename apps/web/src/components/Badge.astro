@@ -10,9 +10,9 @@ interface Props {
 const { variant = 'muted', dot = false, class: className = '' } = Astro.props;
 
 const variants: Record<Variant, string> = {
-  rojo: 'bg-[var(--color-rojo)]/10 text-[var(--color-rojo)] border border-[var(--color-rojo)]/20',
-  verde: 'bg-[var(--color-verde)]/10 text-[var(--color-verde)] border border-[var(--color-verde)]/20',
-  ambar: 'bg-[var(--color-ambar)]/10 text-[var(--color-ambar)] border border-[var(--color-ambar)]/20',
+  rojo: 'bg-[var(--color-rojo)]/10 text-[var(--color-rojo-claro)] border border-[var(--color-rojo)]/20',
+  verde: 'bg-[var(--color-verde)]/10 text-[var(--color-verde-claro)] border border-[var(--color-verde)]/20',
+  ambar: 'bg-[var(--color-ambar)]/10 text-[var(--color-ambar-claro)] border border-[var(--color-ambar)]/20',
   muted: 'bg-white/5 text-[var(--color-muted)] border border-white/10',
 };
 

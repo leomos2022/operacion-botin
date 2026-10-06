@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Badge from '../components/Badge.astro';
+import Boton from '../components/Boton.astro';
+---
+
+<BaseLayout
+  rutaActiva="/la-industria"
+  title="La Industria — Operación Botín"
+  description="Mapa de la industria de bots, granjas de trolls y servicios de desinformación que operan en o desde Colombia."
+>
+  <section class="mx-auto max-w-7xl px-6 py-16">
+    <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">
+      Fase 0.3 · placeholder
+    </p>
+    <h1 class="font-[var(--font-display)] text-4xl md:text-5xl mb-4">La Industria</h1>
+    <p class="text-[var(--color-muted)] max-w-2xl text-lg leading-relaxed">
+      Detrás de cada operación hay un mercado: who pays, who builds, who delivers. Aquí mapeamos actores, precios, servicios y rutas de la maquinaria de desinformación que toca a Colombia.
+    </p>
+
+    <div class="mt-12 rounded-lg border border-dashed border-white/10 bg-[var(--color-surface)] p-10 text-center">
+      <Badge variant="ambar" dot>Investigación en curso</Badge>
+      <h2 class="font-[var(--font-display)] text-2xl mt-4 mb-2">Sección en construcción</h2>
+      <p class="text-[var(--color-muted)] max-w-md mx-auto mb-6">
+        Esta sección se desarrolla en Fase 0.6 con un mapa interactivo de actores y un reporte inicial. La metodología ya está disponible.
+      </p>
+      <Boton variant="secundario" href="/metodologia">Ver metodología</Boton>
+    </div>
+
+    <div class="mt-16">
+      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Preguntas que guían esta sección</h2>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Demanda</p>
+          <p class="text-[var(--color-texto)]">¿Quién contrata servicios de desinformación en Colombia y para qué?</p>
+        </div>
+        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Oferta</p>
+          <p class="text-[var(--color-texto)]">¿Qué actores ofrecen bots, trolls y campañas coordinadas, y a qué precio?</p>
+        </div>
+        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Infraestructura</p>
+          <p class="text-[var(--color-texto)]">¿Qué plataformas, herramientas y proveedores de cuentas usan?</p>
+        </div>
+        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Impacto</p>
+          <p class="text-[var(--color-texto)]">¿Cómo se traduce esa inversión en alcance, narrativas y consecuencias?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
