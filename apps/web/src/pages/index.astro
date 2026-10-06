@@ -1,120 +1,202 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Boton from '../components/Boton.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import Stat from '../components/Stat.astro';
 ---
 
-<BaseLayout>
+<BaseLayout rutaActiva="/">
   <!-- HERO -->
   <section class="relative overflow-hidden">
-    <div class="absolute inset-0 -z-10">
-      <div
-        class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-rojo)_0%,_transparent_55%)] opacity-20"
-      >
+    <div class="absolute inset-0 -z-10" aria-hidden="true">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-rojo)_0%,_transparent_55%)] opacity-20"></div>
+      <div class="absolute inset-0 opacity-[0.07]">
+        <div class="h-full w-full" style="background-image: repeating-linear-gradient(90deg, transparent 0, transparent 79px, var(--color-rojo) 80px); background-size: 80px 100%;"></div>
       </div>
     </div>
 
-    <div class="mx-auto max-w-7xl px-6 py-24 md:py-36">
-      <p
-        class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-6"
-      >
+    <div class="mx-auto max-w-7xl px-6 py-24 md:py-40">
+      <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-6">
         Observatorio · Colombia · 2026
       </p>
 
-      <h1
-        class="font-[var(--font-display)] text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl"
-      >
+      <h1 class="font-[var(--font-display)] text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl">
         Hay cuentas que no duermen.
-        <span class="block text-[var(--color-rojo)] mt-2">
-          Y están hablando contigo.
-        </span>
+        <span class="block text-[var(--color-rojo)] mt-2">Y están hablando contigo.</span>
       </h1>
 
-      <p
-        class="mt-8 max-w-2xl text-lg md:text-xl text-[var(--color-muted)] leading-relaxed"
-      >
-        Operación Botín es un observatorio educativo que documenta cómo operan
-        los bots y la desinformación en Colombia. Sin alarmismo, sin
-        conspiraciones: con metodología abierta y datos con fuente.
+      <p class="mt-8 max-w-2xl text-lg md:text-xl text-[var(--color-muted)] leading-relaxed">
+        Operación Botín es un observatorio educativo que documenta cómo operan los bots y la desinformación en Colombia. Sin alarmismo, sin conspiraciones: con metodología abierta y datos con fuente.
       </p>
 
       <div class="mt-10 flex flex-wrap gap-4">
-        <a
-          href="/metodologia"
-          class="inline-flex items-center gap-2 rounded-md bg-[var(--color-rojo)] px-6 py-3 font-[var(--font-body)] font-semibold text-[var(--color-bg)] hover:opacity-90 transition-opacity"
-        >
-          Ver metodología
-          <span aria-hidden="true">→</span>
-        </a>
-        <a
-          href="/casos"
-          class="inline-flex items-center gap-2 rounded-md border border-white/15 px-6 py-3 font-[var(--font-body)] font-semibold text-[var(--color-texto)] hover:border-white/30 transition-colors"
-        >
-          Ver casos documentados
-        </a>
+        <Boton variant="primario" href="/metodologia">Ver metodología</Boton>
+        <Boton variant="secundario" href="/casos">Ver casos documentados</Boton>
+      </div>
+
+      <div class="mt-20 flex items-center gap-3 text-[var(--color-muted)]">
+        <span class="font-[var(--font-mono)] text-xs uppercase tracking-wider">Desliza para explorar</span>
+        <span class="block h-px w-16 bg-gradient-to-r from-[var(--color-muted)] to-transparent"></span>
       </div>
     </div>
   </section>
 
-  <!-- TARJETAS DE PROPÓSITO -->
+  <!-- SECCIÓN 1 — ¿Qué es un bot? -->
   <section class="border-t border-white/5">
-    <div class="mx-auto max-w-7xl px-6 py-16 grid gap-6 md:grid-cols-3">
-      <article
-        class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-6"
-      >
-        <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">
-          01 · Documentar
+    <div class="mx-auto max-w-7xl px-6 py-24 md:py-32 grid gap-12 md:grid-cols-2 items-start">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">01 · Definición</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-5xl leading-tight mb-6">Un bot no es alguien que discrepa.</h2>
+        <p class="text-[var(--color-muted)] text-lg leading-relaxed mb-4">
+          Un <strong class="text-[var(--color-texto)]">bot</strong> es una cuenta con comportamiento automatizado demostrable: publica a las 3 a.m. sin pausa, repite frases idénticas a miles de cuentas, responde en milisegundos, o usa una API no oficial.
         </p>
-        <h2 class="font-[var(--font-display)] text-xl mb-2">
-          Comportamiento, no intenciones
-        </h2>
-        <p class="text-[var(--color-muted)] leading-relaxed text-sm">
-          Registrmos patrones observables de cuentas automatizadas y
-          operaciones de desinformación. Lo que decimos, lo sustentamos.
+        <p class="text-[var(--color-muted)] leading-relaxed">
+          Confundir disenso con automatización es justo lo que este observatorio combate. La categoría requiere evidencia técnica, no opinión.
         </p>
-      </article>
+      </ScrollReveal>
 
-      <article
-        class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-6"
-      >
-        <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-verde-claro)] mb-3">
-          02 · Educar
-        </p>
-        <h2 class="font-[var(--font-display)] text-xl mb-2">
-          Metodología abierta
-        </h2>
-        <p class="text-[var(--color-muted)] leading-relaxed text-sm">
-          Publicamos cómo etiquetamos, qué fuentes usamos y dónde están los
-          límites. Para que puedas replicar, auditar y corregir.
-        </p>
-      </article>
-
-      <article
-        class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-6"
-      >
-        <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-ambar-claro)] mb-3">
-          03 · Verificar
-        </p>
-        <h2 class="font-[var(--font-display)] text-xl mb-2">
-          Ciudadanía activa
-        </h2>
-        <p class="text-[var(--color-muted)] leading-relaxed text-sm">
-          Si ves una operación sospechosa, repórtala. Te decimos qué
-          información necesitamos y cómo la tratamos.
-        </p>
-      </article>
+      <ScrollReveal delay={120}>
+        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-6 md:p-8">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-4">Categorías que diferenciamos</p>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="mt-1.5 inline-block h-2 w-2 rounded-full bg-[var(--color-rojo)] flex-shrink-0"></span>
+              <div><p class="text-[var(--color-texto)] font-semibold">Bot</p><p class="text-sm text-[var(--color-muted)]">Automatización demostrable.</p></div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1.5 inline-block h-2 w-2 rounded-full bg-[var(--color-ambar)] flex-shrink-0"></span>
+              <div><p class="text-[var(--color-texto)] font-semibold">Troll</p><p class="text-sm text-[var(--color-muted)]">Humano que hostiga o polariza.</p></div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1.5 inline-block h-2 w-2 rounded-full bg-[var(--color-rojo)] flex-shrink-0"></span>
+              <div><p class="text-[var(--color-texto)] font-semibold">Cuenta falsa</p><p class="text-sm text-[var(--color-muted)]">Identidad fabricada.</p></div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1.5 inline-block h-2 w-2 rounded-full bg-[var(--color-verde)] flex-shrink-0"></span>
+              <div><p class="text-[var(--color-texto)] font-semibold">Operador coordinado</p><p class="text-sm text-[var(--color-muted)]">Conjunto de cuentas en sincronía.</p></div>
+            </li>
+          </ul>
+          <a href="/metodologia" class="mt-6 inline-block font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] hover:underline">Ver definición completa →</a>
+        </div>
+      </ScrollReveal>
     </div>
   </section>
 
-  <!-- AVISO EDITORIAL -->
+  <!-- SECCIÓN 2 — La industria -->
+  <section class="border-t border-white/5 bg-[var(--color-surface)]/30">
+    <div class="mx-auto max-w-7xl px-6 py-24 md:py-32">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">02 · La industria</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-5xl leading-tight mb-6 max-w-3xl">Detrás de cada operación hay un mercado.</h2>
+        <p class="text-[var(--color-muted)] text-lg leading-relaxed max-w-2xl">
+          Bots, trolls y campañas coordinadas no aparecen solos. Hay quien los paga, los construye y los entrega. Mapear esa cadena es parte del observatorio.
+        </p>
+      </ScrollReveal>
+
+      <ScrollReveal delay={150} class="mt-12">
+        <div class="grid gap-4 md:grid-cols-3">
+          <Stat etiqueta="Servicios detectados" valor="—" fuente="Investigación en curso · Fase 0.6" />
+          <Stat etiqueta="Plataformas monitoreadas" valor="4" fuente="Twitter, Telegram, Bluesky, Facebook" variante="destacada" />
+          <Stat etiqueta="Rango de precios observado" valor="—" fuente="Se publica con fuentes en Fase 0.6" />
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={250} class="mt-10">
+        <Boton variant="secundario" href="/la-industria">Explorar La Industria →</Boton>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3 — Impacto en Colombia -->
   <section class="border-t border-white/5">
-    <div class="mx-auto max-w-7xl px-6 py-12">
-      <p
-        class="font-[var(--font-mono)] text-sm text-[var(--color-muted)] border-l-2 border-[var(--color-rojo)] pl-4"
-      >
-        Regla editorial: <span class="text-[var(--color-texto)]">"Bot" no es
-        persona que discrepa.</span>
-        Reservamos la categoría para cuentas con comportamiento automatizado
-        demostrable. Toda afirmación factual lleva fuente.
-      </p>
+    <div class="mx-auto max-w-7xl px-6 py-24 md:py-32 grid gap-12 md:grid-cols-2 items-center">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">03 · Impacto</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-5xl leading-tight mb-6">Esto toca a Colombia.</h2>
+        <p class="text-[var(--color-muted)] text-lg leading-relaxed mb-4">
+          Las operaciones de desinformación no son un fenómeno lejano. Aparecen en campañas electorales, debates públicos, crisis sanitarias y conflictos sociales del país.
+        </p>
+        <p class="text-[var(--color-muted)] leading-relaxed">
+          Documentarlas con método es la única forma de que la ciudadanía pueda distinguir una opinión legítima de una operación coordinada — y defender el debate público.
+        </p>
+      </ScrollReveal>
+
+      <ScrollReveal delay={150}>
+        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-6">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-4">Volumen de actividad sospechosa · placeholder</p>
+          <div class="h-48 flex items-end gap-1.5" aria-hidden="true">
+            {[18, 22, 19, 24, 31, 28, 35, 42, 38, 45, 52, 48, 60, 67, 72, 68, 80, 75, 88, 95].map((h) => (
+              <div class="flex-1 rounded-t-sm bg-gradient-to-t from-[var(--color-rojo)]/30 to-[var(--color-rojo)]" style={`height: ${h}%`}></div>
+            ))}
+          </div>
+          <div class="mt-3 flex justify-between text-xs text-[var(--color-muted)] font-[var(--font-mono)]">
+            <span>ene 2026</span><span>sep 2026</span>
+          </div>
+          <p class="mt-4 text-xs text-[var(--color-muted)]">Datos ilustrativos. Se reemplazan por series reales en Fase 1.</p>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4 — Cómo lo hacemos -->
+  <section class="border-t border-white/5 bg-[var(--color-surface)]/30">
+    <div class="mx-auto max-w-7xl px-6 py-24 md:py-32">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">04 · Método</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-5xl leading-tight mb-12 max-w-3xl">Cómo documentamos.</h2>
+      </ScrollReveal>
+
+      <div class="grid gap-6 md:grid-cols-3">
+        <ScrollReveal>
+          <div class="h-full rounded-lg border border-white/5 bg-[var(--color-bg)] p-6">
+            <p class="font-[var(--font-display)] text-4xl text-[var(--color-rojo)] mb-3">01</p>
+            <h3 class="font-[var(--font-display)] text-xl mb-2">Recolección</h3>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Capturamos datos públicos de plataformas con rate-limit estricto. Cada registro lleva marca de tiempo y fuente.</p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={120}>
+          <div class="h-full rounded-lg border border-white/5 bg-[var(--color-bg)] p-6">
+            <p class="font-[var(--font-display)] text-4xl text-[var(--color-rojo)] mb-3">02</p>
+            <h3 class="font-[var(--font-display)] text-xl mb-2">Análisis</h3>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Aplicamos heurísticas (timing, repetición, coordinación) y revisión humana. Toda etiqueta lleva un grado de confianza.</p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={240}>
+          <div class="h-full rounded-lg border border-white/5 bg-[var(--color-bg)] p-6">
+            <p class="font-[var(--font-display)] text-4xl text-[var(--color-rojo)] mb-3">03</p>
+            <h3 class="font-[var(--font-display)] text-xl mb-2">Publicación</h3>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Cada caso se publica con fuentes, limitaciones y método. Si nos equivocamos, se corrige visible con fecha y motivo.</p>
+          </div>
+        </ScrollReveal>
+      </div>
+
+      <ScrollReveal delay={300} class="mt-12">
+        <div class="rounded-lg border-l-2 border-[var(--color-rojo)] bg-[var(--color-bg)] p-6">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Regla editorial</p>
+          <p class="text-[var(--color-texto)] text-lg leading-relaxed">
+            <strong>Nada de datos sin fuente.</strong> Si no podemos atribuirlo, no lo publicamos.
+          </p>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="border-t border-white/5">
+    <div class="mx-auto max-w-4xl px-6 py-24 md:py-32 text-center">
+      <ScrollReveal>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-5xl leading-tight mb-6">
+          ¿Quieres entender cómo distinguir
+          <span class="text-[var(--color-rojo)]">una operación de una opinión?</span>
+        </h2>
+        <p class="text-[var(--color-muted)] text-lg leading-relaxed mb-10 max-w-2xl mx-auto">
+          Empieza por la metodología. Es abierta, está en español, y está pensada para que puedas replicarla, auditarla y corregirla.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <Boton variant="primario" size="lg" href="/metodologia">Leer la metodología</Boton>
+          <Boton variant="secundario" size="lg" href="/verifica">Reportar una cuenta</Boton>
+        </div>
+      </ScrollReveal>
     </div>
   </section>
 </BaseLayout>
