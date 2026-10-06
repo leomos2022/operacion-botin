@@ -1,0 +1,10 @@
+# operacion-botin.pages.dev
+# Reglas de rastreo para buscadores.
+# Permitimos todo excepto el directorio /api/ (gestionado por otro dominio).
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Ruta del sitemap generado por @astrojs/sitemap
+Sitemap: https://operacion-botin.pages.dev/sitemap-index.xml

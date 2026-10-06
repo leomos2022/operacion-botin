@@ -1,0 +1,64 @@
+---
+/**
+ * PremiumGate — marca visualmente contenido premium.
+ *
+ * NO bloquea el acceso en Fase 0. Solo añade:
+ *   - un badge "Premium" en la esquina superior derecha
+ *   - una franja discreta al pie con CTA a /precios
+ *
+ * Cuando se active el sistema de pagos (Fase 1+), este componente
+ * puede evolucionar a wrapper que SÍ bloquea según el rol del usuario.
+ *
+ * Ver ADR-0003 y AGENT_RULES.md §11.
+ *
+ * Uso:
+ *   <PremiumGate plan="profesional">
+ *     <h3>Expediente completo</h3>
+ *     <p>Contenido que será premium…</p>
+ *   </PremiumGate>
+ */
+
+type Plan = 'profesional' | 'organizacion';
+
+interface Props {
+  plan: Plan;
+  class?: string;
+}
+
+const { plan, class: className = '' } = Astro.props;
+
+const planLabel: Record<Plan, string> = {
+  profesional: 'Profesional',
+  organizacion: 'Organización',
+};
+
+const planColor: Record<Plan, string> = {
+  profesional: 'var(--color-ambar-claro)',
+  organizacion: 'var(--color-verde-claro)',
+};
+---
+
+<div class={`relative rounded-lg border border-white/5 bg-[var(--color-surface)] overflow-hidden ${className}`}>
+  <span
+    class="absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 rounded-full bg-[var(--color-bg)]/80 backdrop-blur px-2.5 py-1 text-xs font-[var(--font-mono)] uppercase tracking-wider border border-white/10"
+    style={`color: ${planColor[plan]};`}
+  >
+    <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+      <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+    </svg>
+    Premium · {planLabel[plan]}
+  </span>
+
+  <div class="p-6 pt-10">
+    <slot />
+  </div>
+
+  <div class="border-t border-white/5 bg-[var(--color-bg)]/50 px-6 py-3 flex items-center justify-between gap-3">
+    <p class="text-xs text-[var(--color-muted)] font-[var(--font-mono)]">
+      Este contenido requiere plan <span style={`color: ${planColor[plan]};`}>{planLabel[plan]}</span>.
+    </p>
+    <a href="/precios" class="text-xs font-[var(--font-mono)] uppercase tracking-wider hover:underline" style={`color: ${planColor[plan]};`}>
+      Ver planes →
+    </a>
+  </div>
+</div>

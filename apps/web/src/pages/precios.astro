@@ -1,0 +1,293 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Boton from '../components/Boton.astro';
+import Badge from '../components/Badge.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+
+const planes = [
+  {
+    nombre: 'Ciudadana',
+    precio: 'Gratis',
+    periodicidad: 'para siempre',
+    descripcion: 'Acceso completo a lo esencial del observatorio. Pensado para ciudadanía, estudiantes y periodistas curiosos.',
+    destacado: false,
+    caracteristicas: [
+      'Metodología completa y abierta (CC BY-SA 4.0)',
+      'Resumen de todos los casos publicados',
+      'Métricas clave y plataformas por caso',
+      'Formulario Verifica para reportar cuentas',
+      'Newsletter mensual con hallazgos',
+      'Glosario y definiciones',
+      'Acceso a La Industria (mapa de actores)',
+    ],
+    noIncluye: [
+      'Expedientes completos con cuentas seudonimizadas',
+      'Capturas y evidencia primaria',
+      'Búsqueda avanzada con filtros',
+    ],
+    cta: { label: 'Sin registro necesario', href: '/' },
+  },
+  {
+    nombre: 'Profesional',
+    precio: '~USD 20',
+    periodicidad: '/mes',
+    descripcion: 'Para periodistas, investigadores y equipos pequeños que necesitan profundizar en los casos y recibir alertas tempranas.',
+    destacado: true,
+    caracteristicas: [
+      'Todo lo de Ciudadana, más:',
+      'Expedientes completos de todos los casos',
+      'Cuentas seudonimizadas con etiqueta y confianza',
+      'Capturas y evidencia primaria de cada caso',
+      'Newsletter semanal + alertas tempranas',
+      'Búsqueda avanzada con filtros (plataforma, fecha, categoría)',
+      'Acceso prioritario a reportes especiales',
+    ],
+    noIncluye: [
+      'API programática',
+      'Datasets exportables (Parquet/JSON)',
+      'Webhooks de alertas en tiempo real',
+    ],
+    cta: { label: 'Próximamente — avísame', href: '/verifica' },
+  },
+  {
+    nombre: 'Organización',
+    precio: '~USD 1.000',
+    periodicidad: '/año',
+    descripcion: 'Para redacciones, ONGs, universidades y equipos de compliance que necesitan integrar nuestros datos en sus propios sistemas.',
+    destacado: false,
+    caracteristicas: [
+      'Todo lo de Profesional, más:',
+      'API con endpoints /casos, /cuentas, /datasets',
+      'Datasets exportables en Parquet y JSON',
+      'Webhooks de alertas en tiempo real',
+      'Informes exclusivos mensuales',
+      'Licencia para uso en producto interno',
+      'Soporte dedicado y SLA de respuesta',
+    ],
+    noIncluye: [],
+    cta: { label: 'Contactar ventas', href: '/verifica' },
+  },
+];
+---
+
+<BaseLayout
+  rutaActiva="/precios"
+  title="Precios — Operación Botín"
+  description="Planes del observatorio: ciudadano (gratis), profesional y organización. Lo que protege ciudadanía es gratis; lo que tiene valor comercial es premium."
+>
+  <section class="border-b border-white/5">
+    <div class="mx-auto max-w-7xl px-6 py-16 md:py-24">
+      <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">
+        Fase 0.7 · modelo freemium
+      </p>
+      <h1 class="font-[var(--font-display)] text-4xl md:text-6xl leading-tight mb-6 max-w-4xl">
+        Lo que protege a la ciudadanía es gratis.
+        <span class="block text-[var(--color-rojo)] mt-2">
+          Lo que tiene valor comercial es premium.
+        </span>
+      </h1>
+      <p class="text-[var(--color-muted)] text-lg md:text-xl max-w-3xl leading-relaxed">
+        Operación Botín se sostiene con un modelo de 3 capas. La capa ciudadana es gratis para siempre: metodología, resumen de casos, Verifica. Las capas profesional y organización financian la investigación con datos procesados, alertas tempranas y API.
+      </p>
+      <div class="mt-8">
+        <Badge variant="ambar" dot>Precios en definición · Fase 0.8</Badge>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-white/5 bg-[var(--color-surface)]/30">
+    <div class="mx-auto max-w-7xl px-6 py-12">
+      <ScrollReveal>
+        <div class="rounded-lg border-l-2 border-[var(--color-rojo)] bg-[var(--color-bg)] p-6">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">
+            Regla no negociable
+          </p>
+          <p class="text-[var(--color-texto)] text-lg leading-relaxed">
+            <strong>Nunca</strong> ponemos detrás de paywall lo que protege a alguien de una operación de desinformación. Si una información ayuda a identificar un bot o defenderse de una operación coordinada, es gratis. Sin excepciones.
+          </p>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-7xl px-6 py-16 md:py-24">
+      <div class="grid gap-6 lg:grid-cols-3">
+        {planes.map((plan, i) => (
+          <ScrollReveal delay={i * 120}>
+            <div class={`h-full rounded-lg border p-6 flex flex-col ${plan.destacado ? 'border-[var(--color-ambar)]/40 bg-[var(--color-surface)] shadow-lg shadow-[var(--color-ambar)]/5' : 'border-white/5 bg-[var(--color-surface)]'}`}>
+              {plan.destacado && (
+                <div class="mb-4"><Badge variant="ambar" dot>Más popular</Badge></div>
+              )}
+              <h2 class="font-[var(--font-display)] text-2xl mb-2">{plan.nombre}</h2>
+              <p class="text-sm text-[var(--color-muted)] leading-relaxed mb-6">{plan.descripcion}</p>
+              <div class="mb-6 pb-6 border-b border-white/5">
+                <p class="font-[var(--font-display)] text-4xl text-[var(--color-texto)]">{plan.precio}</p>
+                <p class="text-xs text-[var(--color-muted)] font-[var(--font-mono)] mt-1">{plan.periodicidad}</p>
+              </div>
+              <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-3">Incluye</p>
+              <ul class="space-y-2 mb-6 flex-1">
+                {plan.caracteristicas.map((c) => (
+                  <li class="flex items-start gap-2 text-sm text-[var(--color-muted)]">
+                    <svg class="h-4 w-4 mt-0.5 flex-shrink-0 text-[var(--color-verde-claro)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span class={c.endsWith(':') ? 'text-[var(--color-texto)] font-semibold' : ''}>{c}</span>
+                  </li>
+                ))}
+              </ul>
+              {plan.noIncluye.length > 0 && (
+                <>
+                  <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-3 mt-4">No incluye</p>
+                  <ul class="space-y-2 mb-6">
+                    {plan.noIncluye.map((c) => (
+                      <li class="flex items-start gap-2 text-sm text-[var(--color-muted)]/60">
+                        <svg class="h-4 w-4 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        <span>{c}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+              <div class="mt-auto pt-4">
+                <Boton variant={plan.destacado ? 'primario' : 'secundario'} href={plan.cta.href} class="w-full justify-center">
+                  {plan.cta.label}
+                </Boton>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+      <p class="mt-8 text-center text-xs text-[var(--color-muted)] font-[var(--font-mono)]">
+        Precios estimados · se confirman en Fase 0.8 con integración de pagos.
+        Ver <a href="/metodologia" class="text-[var(--color-rojo-claro)] hover:underline">metodología</a> y ADR-0003.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5 bg-[var(--color-surface)]/30">
+    <div class="mx-auto max-w-7xl px-6 py-16 md:py-24">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">Detalle</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-4xl mb-6">Qué incluye cada plan.</h2>
+        <p class="text-[var(--color-muted)] leading-relaxed max-w-3xl mb-12">
+          La regla es simple: si protege a ciudadanía, es gratis. Si ahorra tiempo a un profesional o alimenta un sistema, es premium. La metodología y Verifica son gratis en todos los planes.
+        </p>
+      </ScrollReveal>
+      <ScrollReveal delay={120}>
+        <div class="overflow-x-auto rounded-lg border border-white/5">
+          <table class="w-full text-sm">
+            <thead class="bg-[var(--color-bg)]">
+              <tr>
+                <th class="px-4 py-3 text-left font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)]">Recurso</th>
+                <th class="px-4 py-3 text-center font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)]">Ciudadana</th>
+                <th class="px-4 py-3 text-center font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-ambar-claro)]">Profesional</th>
+                <th class="px-4 py-3 text-center font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-verde-claro)]">Organización</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+              {[
+                { recurso: 'Metodología completa', c: true, p: true, o: true },
+                { recurso: 'Resumen de casos', c: true, p: true, o: true },
+                { recurso: 'Formulario Verifica', c: true, p: true, o: true },
+                { recurso: 'Newsletter mensual', c: true, p: true, o: true },
+                { recurso: 'Glosario y definiciones', c: true, p: true, o: true },
+                { recurso: 'Expediente completo de casos', c: false, p: true, o: true },
+                { recurso: 'Cuentas seudonimizadas', c: false, p: true, o: true },
+                { recurso: 'Capturas y evidencia primaria', c: false, p: true, o: true },
+                { recurso: 'Newsletter semanal + alertas', c: false, p: true, o: true },
+                { recurso: 'Búsqueda avanzada con filtros', c: false, p: true, o: true },
+                { recurso: 'API programática', c: false, p: false, o: true },
+                { recurso: 'Datasets exportables (Parquet/JSON)', c: false, p: false, o: true },
+                { recurso: 'Webhooks en tiempo real', c: false, p: false, o: true },
+                { recurso: 'Informes exclusivos mensuales', c: false, p: false, o: true },
+                { recurso: 'Soporte dedicado y SLA', c: false, p: false, o: true },
+              ].map((row) => (
+                <tr class="hover:bg-white/[0.02] transition-colors">
+                  <td class="px-4 py-3 text-[var(--color-texto)]">{row.recurso}</td>
+                  <td class="px-4 py-3 text-center">{row.c ? <span class="text-[var(--color-verde-claro)]" aria-label="sí">✓</span> : <span class="text-[var(--color-muted)]/40" aria-label="no">—</span>}</td>
+                  <td class="px-4 py-3 text-center">{row.p ? <span class="text-[var(--color-verde-claro)]" aria-label="sí">✓</span> : <span class="text-[var(--color-muted)]/40" aria-label="no">—</span>}</td>
+                  <td class="px-4 py-3 text-center">{row.o ? <span class="text-[var(--color-verde-claro)]" aria-label="sí">✓</span> : <span class="text-[var(--color-muted)]/40" aria-label="no">—</span>}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5">
+    <div class="mx-auto max-w-3xl px-6 py-16 md:py-24">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">Preguntas frecuentes</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-4xl mb-10">Antes de decidir.</h2>
+      </ScrollReveal>
+      <div class="space-y-8">
+        <ScrollReveal>
+          <div>
+            <p class="font-[var(--font-display)] text-lg mb-2">¿Por qué la metodología es gratis?</p>
+            <p class="text-[var(--color-muted)] leading-relaxed">
+              Porque sin metodología abierta no hay confianza, y sin confianza no hay observatorio. Si no entiendes cómo etiquetamos, no puedes confiar en nuestras etiquetas. Cobrar por la metodología destruiría el valor del proyecto.
+            </p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal>
+          <div>
+            <p class="font-[var(--font-display)] text-lg mb-2">¿Por qué Verifica es gratis?</p>
+            <p class="text-[var(--color-muted)] leading-relaxed">
+              Porque la voz ciudadana es el insumo más valioso del observatorio. Si cobráramos por reportar, reduciríamos los reportes y debilitaríamos la investigación. La inversión en Verifica se recupera con casos mejores.
+            </p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal>
+          <div>
+            <p class="font-[var(--font-display)] text-lg mb-2">¿Venden mis datos si soy cliente?</p>
+            <p class="text-[var(--color-muted)] leading-relaxed">
+              No. No vendemos datos personales identificables. Los datos que ofrecemos son seudonimizados según la regla editorial §4.4. Y todo cliente o patrocinador se declara públicamente — no hay relaciones comerciales ocultas.
+            </p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal>
+          <div>
+            <p class="font-[var(--font-display)] text-lg mb-2">¿Aceptan patrocinio de partidos políticos?</p>
+            <p class="text-[var(--color-muted)] leading-relaxed">
+              No en periodo electoral. El conflicto de interés es demasiado directo. Fuera de elecciones, cualquier relación con actor político se declara públicamente y se somete a revisión editorial.
+            </p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal>
+          <div>
+            <p class="font-[var(--font-display)] text-lg mb-2">¿Puedo cancelar cuando quiera?</p>
+            <p class="text-[var(--color-muted)] leading-relaxed">
+              Sí. Las suscripciones son mensuales o anuales sin permanencia. Si cancelas, pierdes acceso al contenido premium al final del periodo facturado, pero sigues teniendo acceso a la capa ciudadana gratis.
+            </p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal>
+          <div>
+            <p class="font-[var(--font-display)] text-lg mb-2">¿Hay descuento para ONGs o estudiantes?</p>
+            <p class="text-[var(--color-muted)] leading-relaxed">
+              Sí. ONGs acreditadas y estudiantes con correo educativo tienen descuento del 50% en el plan Profesional. Escríbenos a
+              <a href="mailto:hola@operacionbotin.co" class="text-[var(--color-rojo-claro)] hover:underline font-[var(--font-mono)]">hola@operacionbotin.co</a>
+              cuando el sistema de pagos esté activo (Fase 0.8).
+            </p>
+          </div>
+        </ScrollReveal>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5 bg-[var(--color-surface)]/30">
+    <div class="mx-auto max-w-4xl px-6 py-16 text-center">
+      <ScrollReveal>
+        <h2 class="font-[var(--font-display)] text-2xl md:text-3xl mb-4">¿Tienes dudas sobre qué plan te conviene?</h2>
+        <p class="text-[var(--color-muted)] mb-8 max-w-xl mx-auto">
+          Escríbenos. No vendemos: orientamos. Si no te conviene premium, te quedas en ciudadana sin perder nada esencial.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <Boton variant="primario" href="mailto:hola@operacionbotin.co">Escríbenos</Boton>
+          <Boton variant="secundario" href="/metodologia">Ver metodología</Boton>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+</BaseLayout>

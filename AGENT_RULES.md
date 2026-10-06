@@ -130,7 +130,11 @@ packages/shared/
 ## 9. Documentación de decisiones (ADRs)
 
 Decisiones arquitectónicas significativas se documentan en
-`docs/adr/NNNN-titulo.md` (formato MADR simplificado). Se introducen en
+
+ADRs aceptados a la fecha:
+- **ADR-0001**: Selección de stack (Astro + Cloudflare + Python)
+- **ADR-0002**: Categorización de cuentas (4 categorías técnicas)
+- **ADR-0003**: Modelo freemium de 3 capas (ver §11)`docs/adr/NNNN-titulo.md` (formato MADR simplificado). Se introducen en
 fase 0.7.
 
 ## 10. Idioma
@@ -138,3 +142,38 @@ fase 0.7.
 - Código, comentarios y docs internos: **español** (excepto identificadores
   técnicos estándar en inglés: `healthcheck`, `handler`, `middleware`).
 - Contenido editorial publicado: **español (Colombia)**.
+
+## 11. Modelo de monetización (vinculante)
+
+El observatorio opera con un **modelo freemium de 3 capas** definido en
+ADR-0003 (`docs/adr/0003-modelo-freemium.md`). Regla rectora:
+
+> **Lo que protege a la ciudadanía es gratis. Lo que tiene valor
+> comercial es premium. Nunca se mezcla.**
+
+### Capas
+
+| Capa | Precio | Qué incluye |
+|------|--------|-------------|
+| **Ciudadana** | Gratis | Metodología, casos resumidos, Verifica, newsletter mensual, glosario |
+| **Profesional** | ~USD 15-25/mes | Expedientes completos, cuentas etiquetadas, alertas semanales, búsqueda avanzada |
+| **Organización** | ~USD 500-2000/año | API, datasets exportables, webhooks, informes exclusivos, SLA |
+
+### Reglas no negociables
+
+1. **Lo ciudadano nunca va detrás de paywall.** Si una información protege a alguien de una operación de desinformación, es gratis.
+2. **Verifica es siempre gratis.** La voz ciudadana no se cobra.
+3. **Metodología es siempre abierta.** Sin metodología abierta no hay confianza, y sin confianza no hay negocio sostenible.
+4. **Todo patrocinador o cliente se declara públicamente.** No hay relaciones comerciales ocultas.
+5. **No vendemos datos personales identificables.** Solo seudonimizados (regla §4.4).
+6. **No aceptamos patrocinio de actores políticos o gubernamentales en periodo electoral.** Conflicto directo.
+
+### Implementación técnica
+
+- `PremiumGate.astro`: componente wrapper que marca visualmente contenido premium con badge y CTA a `/precios`. **No bloquea** el acceso en Fase 0; solo señala qué será premium cuando se active el sistema de pagos.
+- `apps/api`: `/api/v1/health` es público. Los endpoints `/api/v1/casos`, `/api/v1/cuentas`, `/api/v1/datasets` requerirán API key (middleware Hono). Se implementan en Fase 1.
+- `packages/shared/types`: el tipo `Caso` tendrá campo `nivelAcceso` (`publico` | `profesional` | `organizacion`) cuando se activen los endpoints premium.
+
+### Riesgo editorial
+
+Si un cliente grande presiona para cambiar la metodología o etiquetar de forma favorable, **se resiste**. La independencia editorial es el activo más valioso del observatorio. ADR-0002 (categorización) es vinculante y no se modifica por presión comercial.
