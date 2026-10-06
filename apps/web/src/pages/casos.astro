@@ -2,6 +2,43 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Boton from '../components/Boton.astro';
 import Badge from '../components/Badge.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import type { Plataforma } from '../../../packages/shared/types/index';
+
+const casoEjemplo = {
+  slug: 'ejemplo-ilustrativo',
+  titulo: 'Operación "río de menciones" (ejemplo ilustrativo)',
+  resumen: 'Caso ficticio para mostrar la estructura de un expediente. Cuando se publique el primer caso real, este ejemplo se elimina.',
+  fechaInicio: '2026-01-15',
+  fechaCierre: '2026-02-28',
+  plataformas: ['twitter', 'telegram'] as Plataforma[],
+  categorias: ['bot', 'operador_coordinado'] as const,
+  estado: 'borrador' as const,
+  confianza: 0.86,
+  metricas: [
+    { etiqueta: 'Cuentas involucradas', valor: '47', fuente: 'Pipeline OB · Q1 2026' },
+    { etiqueta: 'Publicaciones capturadas', valor: '12.480', fuente: 'Pipeline OB · Q1 2026' },
+    { etiqueta: 'Hashtag principal', valor: '#Ejemplo', fuente: 'Captura manual' },
+  ],
+};
+
+const estados: Record<string, { label: string; variant: 'rojo' | 'verde' | 'ambar' | 'muted' }> = {
+  borrador: { label: 'Borrador', variant: 'muted' },
+  publicado: { label: 'Publicado', variant: 'verde' },
+  actualizado: { label: 'Actualizado', variant: 'ambar' },
+  archivado: { label: 'Archivado', variant: 'muted' },
+};
+
+const plataformaLabel: Record<Plataforma, string> = {
+  twitter: 'Twitter/X', telegram: 'Telegram', bluesky: 'Bluesky',
+  facebook: 'Facebook', tiktok: 'TikTok', instagram: 'Instagram', otra: 'Otra',
+};
+
+const categoriaLabel: Record<string, string> = {
+  bot: 'Bot', troll: 'Troll', cuenta_falsa: 'Cuenta falsa',
+  operador_coordinado: 'Operador coordinado', humano_verificado: 'Humano verificado',
+  sin_clasificar: 'Sin clasificar',
+};
 ---
 
 <BaseLayout
@@ -9,33 +46,110 @@ import Badge from '../components/Badge.astro';
   title="Casos — Operación Botín"
   description="Índice de casos documentados de bots y operaciones de desinformación en Colombia."
 >
-  <section class="mx-auto max-w-7xl px-6 py-16">
-    <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">
-      Fase 0.3 · placeholder
-    </p>
-    <h1 class="font-[var(--font-display)] text-4xl md:text-5xl mb-4">Casos documentados</h1>
-    <p class="text-[var(--color-muted)] max-w-2xl text-lg leading-relaxed">
-      Cada caso registra el comportamiento observado, las plataformas involucradas, las fuentes y el método de análisis. Sin fuentes no hay caso.
-    </p>
-
-    <div class="mt-12 rounded-lg border border-dashed border-white/10 bg-[var(--color-surface)] p-10 text-center">
-      <Badge variant="ambar" dot>En preparación</Badge>
-      <h2 class="font-[var(--font-display)] text-2xl mt-4 mb-2">Aún no hay casos publicados</h2>
-      <p class="text-[var(--color-muted)] max-w-md mx-auto mb-6">
-        Los primeros casos se publicarán en Fase 0.6. Mientras tanto, puedes revisar la metodología para entender cómo los documentamos.
+  <section class="border-b border-white/5">
+    <div class="mx-auto max-w-7xl px-6 py-16">
+      <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">Fase 0.6 · estructura lista</p>
+      <h1 class="font-[var(--font-display)] text-4xl md:text-5xl mb-4">Casos documentados</h1>
+      <p class="text-[var(--color-muted)] max-w-2xl text-lg leading-relaxed">
+        Cada caso es un expediente: comportamiento observado, cuentas involucradas (seudonimizadas), plataformas, métricas, fuentes y limitaciones. Sin fuentes no hay caso.
       </p>
-      <Boton variant="secundario" href="/metodologia">Ver metodología</Boton>
     </div>
+  </section>
 
-    <div class="mt-16">
-      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Qué encontrarás en cada caso</h2>
-      <ul class="space-y-3 text-[var(--color-muted)]">
-        <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">01</span><span><strong class="text-[var(--color-texto)]">Resumen y contexto</strong> — qué pasó, cuándo, dónde.</span></li>
-        <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">02</span><span><strong class="text-[var(--color-texto)]">Cuentas involucradas</strong> — identificadores seudonimizados y categorización.</span></li>
-        <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">03</span><span><strong class="text-[var(--color-texto)]">Patrones observados</strong> — volumen, horarios, coordinación, narrativas.</span></li>
-        <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">04</span><span><strong class="text-[var(--color-texto)]">Fuentes</strong> — URLs, capturas, datasets, informes referenciados.</span></li>
-        <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">05</span><span><strong class="text-[var(--color-texto)]">Limitaciones</strong> — qué no podemos afirmar y por qué.</span></li>
-      </ul>
+  <section class="border-b border-white/5 bg-[var(--color-surface)]/30">
+    <div class="mx-auto max-w-7xl px-6 py-6 flex flex-wrap items-center gap-3">
+      <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mr-2">Filtrar:</p>
+      <button type="button" class="rounded-full border border-[var(--color-rojo)]/30 bg-[var(--color-rojo)]/10 px-3 py-1 text-xs font-[var(--font-mono)] text-[var(--color-rojo-claro)]">Todos</button>
+      <button type="button" class="rounded-full border border-white/10 px-3 py-1 text-xs font-[var(--font-mono)] text-[var(--color-muted)] hover:border-white/30 hover:text-[var(--color-texto)] transition-colors">Bots</button>
+      <button type="button" class="rounded-full border border-white/10 px-3 py-1 text-xs font-[var(--font-mono)] text-[var(--color-muted)] hover:border-white/30 hover:text-[var(--color-texto)] transition-colors">Trolls</button>
+      <button type="button" class="rounded-full border border-white/10 px-3 py-1 text-xs font-[var(--font-mono)] text-[var(--color-muted)] hover:border-white/30 hover:text-[var(--color-texto)] transition-colors">Cuentas falsas</button>
+      <button type="button" class="rounded-full border border-white/10 px-3 py-1 text-xs font-[var(--font-mono)] text-[var(--color-muted)] hover:border-white/30 hover:text-[var(--color-texto)] transition-colors">Operadores coordinados</button>
+      <span class="ml-auto text-xs text-[var(--color-muted)] font-[var(--font-mono)]">1 caso · 0 publicados</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-7xl px-6 py-12">
+      <ScrollReveal>
+        <article class="rounded-lg border border-dashed border-[var(--color-ambar)]/30 bg-[var(--color-surface)] overflow-hidden">
+          <div class="p-6 border-b border-white/5">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <Badge variant="ambar" dot>Ejemplo ilustrativo</Badge>
+              <Badge variant={estados[casoEjemplo.estado].variant}>{estados[casoEjemplo.estado].label}</Badge>
+              <span class="font-[var(--font-mono)] text-xs text-[var(--color-muted)]">Confianza: {casoEjemplo.confianza.toFixed(2)}</span>
+            </div>
+            <h2 class="font-[var(--font-display)] text-2xl md:text-3xl mb-3">{casoEjemplo.titulo}</h2>
+            <p class="text-[var(--color-muted)] leading-relaxed">{casoEjemplo.resumen}</p>
+          </div>
+
+          <div class="p-6 grid gap-6 md:grid-cols-2 border-b border-white/5">
+            <div>
+              <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-3">Plataformas</p>
+              <div class="flex flex-wrap gap-2">
+                {casoEjemplo.plataformas.map((p) => <Badge variant="muted">{plataformaLabel[p]}</Badge>)}
+              </div>
+            </div>
+            <div>
+              <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-3">Categorías</p>
+              <div class="flex flex-wrap gap-2">
+                {casoEjemplo.categorias.map((c) => <Badge variant="rojo">{categoriaLabel[c]}</Badge>)}
+              </div>
+            </div>
+            <div>
+              <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-2">Fecha de inicio</p>
+              <p class="font-[var(--font-mono)] text-sm text-[var(--color-texto)]">{casoEjemplo.fechaInicio}</p>
+            </div>
+            <div>
+              <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-2">Fecha de cierre</p>
+              <p class="font-[var(--font-mono)] text-sm text-[var(--color-texto)]">{casoEjemplo.fechaCierre}</p>
+            </div>
+          </div>
+
+          <div class="p-6 border-b border-white/5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-4">Métricas clave</p>
+            <div class="grid gap-4 sm:grid-cols-3">
+              {casoEjemplo.metricas.map((m) => (
+                <div class="rounded-md border border-white/5 bg-[var(--color-bg)] p-4">
+                  <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)] mb-1">{m.etiqueta}</p>
+                  <p class="font-[var(--font-display)] text-2xl text-[var(--color-texto)]">{m.valor}</p>
+                  <p class="mt-1 text-xs text-[var(--color-muted)] font-[var(--font-mono)]"><span class="opacity-60">Fuente:</span> {m.fuente}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="p-6 flex flex-wrap items-center justify-between gap-4">
+            <p class="text-xs text-[var(--color-muted)] font-[var(--font-mono)]">slug: <span class="text-[var(--color-texto)]">{casoEjemplo.slug}</span></p>
+            <Boton variant="fantasma" size="sm">Ver expediente completo →</Boton>
+          </div>
+        </article>
+      </ScrollReveal>
+
+      <ScrollReveal delay={120}>
+        <div class="mt-8 rounded-lg border border-dashed border-white/10 bg-[var(--color-surface)] p-10 text-center">
+          <Badge variant="ambar" dot>En preparación</Badge>
+          <h2 class="font-[var(--font-display)] text-2xl mt-4 mb-2">Sin casos publicados todavía</h2>
+          <p class="text-[var(--color-muted)] max-w-md mx-auto mb-6">
+            El primer caso real se publica cuando el pipeline de la Fase 1 produzca datos verificables. Mientras tanto, puedes revisar la metodología para entender cómo documentamos.
+          </p>
+          <Boton variant="secundario" href="/metodologia">Ver metodología</Boton>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={200}>
+        <div class="mt-16">
+          <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Qué encontrarás en cada expediente</h2>
+          <ul class="space-y-3 text-[var(--color-muted)]">
+            <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">01</span><span><strong class="text-[var(--color-texto)]">Resumen y contexto</strong> — qué pasó, cuándo, dónde.</span></li>
+            <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">02</span><span><strong class="text-[var(--color-texto)]">Cuentas involucradas</strong> — identificadores seudonimizados, categoría y confianza por cuenta.</span></li>
+            <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">03</span><span><strong class="text-[var(--color-texto)]">Patrones observados</strong> — volumen, horarios, sincronía, narrativas recurrentes.</span></li>
+            <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">04</span><span><strong class="text-[var(--color-texto)]">Métricas clave</strong> — cifras agregadas con fuente atribuida.</span></li>
+            <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">05</span><span><strong class="text-[var(--color-texto)]">Fuentes</strong> — URLs, capturas, datasets, informes referenciados.</span></li>
+            <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">06</span><span><strong class="text-[var(--color-texto)]">Limitaciones</strong> — qué no podemos afirmar y por qué.</span></li>
+            <li class="flex gap-3"><span class="text-[var(--color-rojo-claro)] font-[var(--font-mono)]">07</span><span><strong class="text-[var(--color-texto)]">Correcciones</strong> — historial visible de cambios con fecha y motivo.</span></li>
+          </ul>
+        </div>
+      </ScrollReveal>
     </div>
   </section>
 </BaseLayout>

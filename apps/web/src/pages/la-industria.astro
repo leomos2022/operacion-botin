@@ -1,7 +1,57 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Badge from '../components/Badge.astro';
 import Boton from '../components/Boton.astro';
+import Badge from '../components/Badge.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import Tabla from '../components/Tabla.astro';
+
+const actores = [
+  {
+    tipo: 'Proveedor de bots',
+    descripcion: 'Desarrolla y mantiene software de cuentas automatizadas. Vende acceso por suscripción o por paquete de cuentas.',
+    ejemplo: 'Servicios que ofrecen "packs" de cuentas verificadas con API dedicada.',
+    variant: 'rojo' as const,
+  },
+  {
+    tipo: 'Granja de trolls',
+    descripcion: 'Operación con humanos pagados que publican en turnos coordinados desde un mismo lugar físico o virtual.',
+    ejemplo: 'Células que responden a briefings diarios con narrativa y objetivos.',
+    variant: 'ambar' as const,
+  },
+  {
+    tipo: 'Agencia de marketing político',
+    descripcion: 'Intermediario formal que compra servicios de bots y trolls para campañas, empaquetándolos como "gestión digital".',
+    ejemplo: 'Empresas con sitio web y facturación que subcontratan operadores.',
+    variant: 'rojo' as const,
+  },
+  {
+    tipo: 'Intermediario informal',
+    descripcion: 'Persona o pequeño grupo que conecta demanda política con oferta de operadores. Suele operar en canales privados.',
+    ejemplo: 'Contactos en Telegram que arman paquetes por evento (elección, crisis).',
+    variant: 'muted' as const,
+  },
+  {
+    tipo: 'Operador interno',
+    descripcion: 'Equipo dentro de una organización (partido, gremio, empresa) que ejecuta operaciones sin externalizar.',
+    ejemplo: 'Departamentos de "comunicación digital" con personal dedicado.',
+    variant: 'ambar' as const,
+  },
+  {
+    tipo: 'Infraestructura técnica',
+    descripcion: 'Proveedores de herramientas: generadores de cuentas, proxies residenciales, paneles de gestión multicuenta.',
+    ejemplo: 'SaaS que vende "social media management" sin verificación de uso.',
+    variant: 'rojo' as const,
+  },
+];
+
+const preciosFilas: (string | number)[][] = [
+  ['Cuentas de Twitter verificadas (pack 100)', '—', '—', 'Investigación en curso'],
+  ['Cuentas de Telegram nuevas (pack 1.000)', '—', '—', 'Investigación en curso'],
+  ['Campaña coordinada 24h (500 cuentas)', '—', '—', 'Investigación en curso'],
+  ['Hashtag trending artificial (1 día)', '—', '—', 'Investigación en curso'],
+  ['Ataque coordinado a cuenta específica', '—', '—', 'Investigación en curso'],
+  ['Servicio mensual de "reputation management"', '—', '—', 'Investigación en curso'],
+];
 ---
 
 <BaseLayout
@@ -9,44 +59,126 @@ import Boton from '../components/Boton.astro';
   title="La Industria — Operación Botín"
   description="Mapa de la industria de bots, granjas de trolls y servicios de desinformación que operan en o desde Colombia."
 >
-  <section class="mx-auto max-w-7xl px-6 py-16">
-    <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">
-      Fase 0.3 · placeholder
-    </p>
-    <h1 class="font-[var(--font-display)] text-4xl md:text-5xl mb-4">La Industria</h1>
-    <p class="text-[var(--color-muted)] max-w-2xl text-lg leading-relaxed">
-      Detrás de cada operación hay un mercado: who pays, who builds, who delivers. Aquí mapeamos actores, precios, servicios y rutas de la maquinaria de desinformación que toca a Colombia.
-    </p>
-
-    <div class="mt-12 rounded-lg border border-dashed border-white/10 bg-[var(--color-surface)] p-10 text-center">
-      <Badge variant="ambar" dot>Investigación en curso</Badge>
-      <h2 class="font-[var(--font-display)] text-2xl mt-4 mb-2">Sección en construcción</h2>
-      <p class="text-[var(--color-muted)] max-w-md mx-auto mb-6">
-        Esta sección se desarrolla en Fase 0.6 con un mapa interactivo de actores y un reporte inicial. La metodología ya está disponible.
+  <section class="border-b border-white/5">
+    <div class="mx-auto max-w-7xl px-6 py-16">
+      <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">Fase 0.6 · estructura lista</p>
+      <h1 class="font-[var(--font-display)] text-4xl md:text-5xl mb-4">La Industria</h1>
+      <p class="text-[var(--color-muted)] max-w-2xl text-lg leading-relaxed">
+        Detrás de cada operación hay un mercado. Mapeamos actores, servicios, precios y rutas. Sin fuentes verificadas no publicamos cifras — por eso esta sección está en estructura: cuando el pipeline confirme datos, los verás aquí.
       </p>
-      <Boton variant="secundario" href="/metodologia">Ver metodología</Boton>
     </div>
+  </section>
 
-    <div class="mt-16">
-      <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">Preguntas que guían esta sección</h2>
-      <div class="grid gap-4 md:grid-cols-2">
-        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
-          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Demanda</p>
-          <p class="text-[var(--color-texto)]">¿Quién contrata servicios de desinformación en Colombia y para qué?</p>
-        </div>
-        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
-          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Oferta</p>
-          <p class="text-[var(--color-texto)]">¿Qué actores ofrecen bots, trolls y campañas coordinadas, y a qué precio?</p>
-        </div>
-        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
-          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Infraestructura</p>
-          <p class="text-[var(--color-texto)]">¿Qué plataformas, herramientas y proveedores de cuentas usan?</p>
-        </div>
-        <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
-          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Impacto</p>
-          <p class="text-[var(--color-texto)]">¿Cómo se traduce esa inversión en alcance, narrativas y consecuencias?</p>
-        </div>
+  <section class="border-b border-white/5 bg-[var(--color-surface)]/30">
+    <div class="mx-auto max-w-7xl px-6 py-6">
+      <div class="rounded-lg border-l-2 border-[var(--color-ambar)] bg-[var(--color-bg)] p-4 flex items-start gap-3">
+        <Badge variant="ambar" dot>Investigación en curso</Badge>
+        <p class="text-sm text-[var(--color-muted)] leading-relaxed">
+          Esta sección se publica con datos verificables en la Fase 0.8. Lo que ves ahora es la estructura editorial: tipos de actor, flujo de mercado y categorías de precio. No son datos reales.
+        </p>
       </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-7xl px-6 py-16 md:py-24">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">01 · Tipos de actor</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-4xl mb-6">Quiénes operan.</h2>
+        <p class="text-[var(--color-muted)] leading-relaxed max-w-3xl mb-12">
+          La industria no es un bloque homogéneo. Hay desarrolladores, operadores, intermediarios e infraestructura. Identificar el tipo de actor es clave para entender el costo, el alcance y la respuesta posible.
+        </p>
+      </ScrollReveal>
+
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {actores.map((actor, i) => (
+          <ScrollReveal delay={i * 80}>
+            <div class="h-full rounded-lg border border-white/5 bg-[var(--color-surface)] p-6">
+              <div class="flex items-center gap-2 mb-3"><Badge variant={actor.variant} dot>{actor.tipo}</Badge></div>
+              <p class="text-[var(--color-texto)] leading-relaxed mb-3">{actor.descripcion}</p>
+              <p class="text-xs text-[var(--color-muted)] font-[var(--font-mono)] leading-relaxed"><span class="opacity-60">Patrón típico:</span> {actor.ejemplo}</p>
+            </div>
+          </ScrollReveal>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5 bg-[var(--color-surface)]/30">
+    <div class="mx-auto max-w-7xl px-6 py-16 md:py-24">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">02 · Flujo de mercado</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-4xl mb-6">Cómo se mueve.</h2>
+        <p class="text-[var(--color-muted)] leading-relaxed max-w-3xl mb-12">
+          La cadena de valor típica va de la demanda política o comercial a la ejecución técnica. Cada eslabón suma costo y borra evidencia. Mapear el flujo ayuda a identificar dónde es más eficaz intervenir.
+        </p>
+      </ScrollReveal>
+
+      <ScrollReveal delay={120}>
+        <ol class="grid gap-4 md:grid-cols-4">
+          <li class="rounded-lg border border-white/5 bg-[var(--color-bg)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">01 · Demanda</p>
+            <p class="text-[var(--color-texto)] font-semibold mb-2">Cliente</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Actor político, empresarial o gubernamental que quiere amplificar una narrativa o silenciar a un oponente.</p>
+          </li>
+          <li class="rounded-lg border border-white/5 bg-[var(--color-bg)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">02 · Intermediario</p>
+            <p class="text-[var(--color-texto)] font-semibold mb-2">Agencia / gestor</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Recibe el brief y arma el paquete: contrata operadores, define la narrativa, gestiona la logística.</p>
+          </li>
+          <li class="rounded-lg border border-white/5 bg-[var(--color-bg)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">03 · Ejecución</p>
+            <p class="text-[var(--color-texto)] font-semibold mb-2">Operador</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Granja de trolls o botmaster que ejecuta la operación: publica, responde, amplify, hashtag.</p>
+          </li>
+          <li class="rounded-lg border border-white/5 bg-[var(--color-bg)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">04 · Infraestructura</p>
+            <p class="text-[var(--color-texto)] font-semibold mb-2">Proveedor técnico</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Cuentas, proxies, paneles, APIs. Suele estar fuera del país y atender múltiples mercados.</p>
+          </li>
+        </ol>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5">
+    <div class="mx-auto max-w-7xl px-6 py-16 md:py-24">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-4">03 · Precios observados</p>
+        <h2 class="font-[var(--font-display)] text-3xl md:text-4xl mb-6">Cuánto cuesta.</h2>
+        <p class="text-[var(--color-muted)] leading-relaxed max-w-3xl mb-8">
+          Toda cifra publicada lleva fuente verificable (captura, informe, investigación periodística). Mientras no tengamos fuentes, las celdas van vacías. Esto es intencional: la regla editorial prohíbe inventar números.
+        </p>
+      </ScrollReveal>
+
+      <ScrollReveal delay={120}>
+        <Tabla
+          caption="Precios de servicios de desinformación observados en Colombia (placeholder sin datos)"
+          encabezados={['Servicio', 'Precio COP', 'Precio USD', 'Fuente']}
+          filas={preciosFilas}
+        />
+        <p class="mt-3 text-xs text-[var(--color-muted)] font-[var(--font-mono)]">Fuente: investigación en curso · Fase 0.8 · sin datos publicados.</p>
+      </ScrollReveal>
+
+      <ScrollReveal delay={200}>
+        <div class="mt-12 rounded-lg border-l-2 border-[var(--color-verde)] bg-[var(--color-surface)] p-6">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-verde-claro)] mb-2">¿Tienes información sobre precios?</p>
+          <p class="text-[var(--color-muted)] leading-relaxed mb-4">
+            Si has visto cotizaciones o has sido contactado por un proveedor, repórtalo. No pedimos que compartas identidad, solo el dato. Toda información se trata como anónima por defecto.
+          </p>
+          <Boton variant="secundario" href="/verifica">Reportar al observatorio →</Boton>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5 bg-[var(--color-surface)]/30">
+    <div class="mx-auto max-w-4xl px-6 py-16 text-center">
+      <ScrollReveal>
+        <h2 class="font-[var(--font-display)] text-2xl md:text-3xl mb-4">¿Quieres entender cómo detectamos estos actores?</h2>
+        <p class="text-[var(--color-muted)] mb-8 max-w-xl mx-auto">La metodología explica qué señales buscamos y qué límites tiene nuestra detección.</p>
+        <Boton variant="primario" href="/metodologia">Ver metodología</Boton>
+      </ScrollReveal>
     </div>
   </section>
 </BaseLayout>
