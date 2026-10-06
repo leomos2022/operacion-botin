@@ -1,0 +1,210 @@
+{
+  "metadata": {
+    "fecha_analisis": "2026-10-06T18:42:22.208744",
+    "plataforma": "bluesky",
+    "total_posts_unicos": 157,
+    "total_autores_unicos": 100,
+    "periodo_captura": {
+      "inicio": "2026-06-26T12:35:07.783000Z",
+      "fin": "2026-10-06T23:11:37.047726Z"
+    },
+    "terminos_busqueda": [
+      "elecciones Colombia",
+      "desinformación Colombia",
+      "bots políticos",
+      "Abelardo de la Espriella"
+    ]
+  },
+  "top_autores_volumen": [
+    {
+      "seudonimo": "@cuenta***63",
+      "handle_publico": null,
+      "total_posts": 26
+    },
+    {
+      "seudonimo": "@cuenta***27",
+      "handle_publico": null,
+      "total_posts": 20
+    },
+    {
+      "seudonimo": "@cuenta***55",
+      "handle_publico": null,
+      "total_posts": 3
+    },
+    {
+      "seudonimo": "@cuenta***07",
+      "handle_publico": null,
+      "total_posts": 3
+    },
+    {
+      "seudonimo": "@elespectador.com",
+      "handle_publico": "elespectador.com",
+      "total_posts": 3
+    },
+    {
+      "seudonimo": "@cuenta***19",
+      "handle_publico": null,
+      "total_posts": 2
+    },
+    {
+      "seudonimo": "@cuenta***22",
+      "handle_publico": null,
+      "total_posts": 2
+    },
+    {
+      "seudonimo": "@cuenta***71",
+      "handle_publico": null,
+      "total_posts": 2
+    },
+    {
+      "seudonimo": "@cuenta***38",
+      "handle_publico": null,
+      "total_posts": 2
+    },
+    {
+      "seudonimo": "@cuenta***12",
+      "handle_publico": null,
+      "total_posts": 2
+    }
+  ],
+  "analisis_temporal": {
+    "por_autor": {
+      "elespectador.com": {
+        "total_posts": 3,
+        "horas_unicas": 3,
+        "cobertura_horaria_pct": 12.5,
+        "ratio_madrugada_pct": 0.0,
+        "intervalo_medio_seg": 7681.5,
+        "cv_intervalos": 0.817,
+        "senal_cobertura": false,
+        "senal_regularidad": false,
+        "confianza_bot_candidato": 0.0
+      },
+      "elpaisamericaco.bsky.social": {
+        "total_posts": 3,
+        "horas_unicas": 3,
+        "cobertura_horaria_pct": 12.5,
+        "ratio_madrugada_pct": 0.0,
+        "intervalo_medio_seg": 43799.5,
+        "cv_intervalos": 1.24,
+        "senal_cobertura": false,
+        "senal_regularidad": false,
+        "confianza_bot_candidato": 0.0
+      },
+      "killbaitcolombia.bsky.social": {
+        "total_posts": 20,
+        "horas_unicas": 13,
+        "cobertura_horaria_pct": 54.2,
+        "ratio_madrugada_pct": 20.0,
+        "intervalo_medio_seg": 263400.8,
+        "cv_intervalos": 1.961,
+        "senal_cobertura": false,
+        "senal_regularidad": false,
+        "confianza_bot_candidato": 0.0
+      },
+      "lagaceta.bsky.social": {
+        "total_posts": 26,
+        "horas_unicas": 14,
+        "cobertura_horaria_pct": 58.3,
+        "ratio_madrugada_pct": 26.9,
+        "intervalo_medio_seg": 106070.1,
+        "cv_intervalos": 1.333,
+        "senal_cobertura": true,
+        "senal_regularidad": false,
+        "confianza_bot_candidato": 0.65
+      },
+      "latinoamerica21.bsky.social": {
+        "total_posts": 3,
+        "horas_unicas": 3,
+        "cobertura_horaria_pct": 12.5,
+        "ratio_madrugada_pct": 0.0,
+        "intervalo_medio_seg": 179766.7,
+        "cv_intervalos": 0.683,
+        "senal_cobertura": false,
+        "senal_regularidad": false,
+        "confianza_bot_candidato": 0.0
+      }
+    }
+  },
+  "analisis_contenido": {
+    "textos_repetidos_entre_cuentas": [],
+    "total_textos_repetidos": 0,
+    "top_hashtags": [
+      [
+        "#Colombia",
+        7
+      ],
+      [
+        "#TerremotoColombia",
+        7
+      ],
+      [
+        "#desinformación",
+        6
+      ],
+      [
+        "#elecciones",
+        5
+      ],
+      [
+        "#subsidios",
+        3
+      ],
+      [
+        "#Monsterdon",
+        3
+      ],
+      [
+        "#SismoColombia",
+        3
+      ],
+      [
+        "#gobierno",
+        3
+      ],
+      [
+        "#bolsonaro",
+        2
+      ],
+      [
+        "#derecha",
+        2
+      ],
+      [
+        "#gustavopetro",
+        2
+      ],
+      [
+        "#EmergenciaNacional",
+        2
+      ],
+      [
+        "#EstadosUnidos",
+        2
+      ],
+      [
+        "#TeConvieneSaberMás",
+        2
+      ],
+      [
+        "#CaliSismo",
+        2
+      ]
+    ]
+  },
+  "analisis_grafo": {
+    "sincronias_detectadas": [],
+    "total_sincronias": 0
+  },
+  "cuentas_con_senales": [
+    {
+      "seudonimo": "@cuenta***63",
+      "handle_publico": null,
+      "confianza_bot_candidato": 0.65,
+      "total_posts": 26,
+      "razones": [
+        "cobertura_horaria_amplia"
+      ]
+    }
+  ]
+}

@@ -64,7 +64,7 @@ const categoriaLabel: Record<string, string> = {
       <button type="button" class="rounded-full border border-white/10 px-3 py-1 text-xs font-[var(--font-mono)] text-[var(--color-muted)] hover:border-white/30 hover:text-[var(--color-texto)] transition-colors">Trolls</button>
       <button type="button" class="rounded-full border border-white/10 px-3 py-1 text-xs font-[var(--font-mono)] text-[var(--color-muted)] hover:border-white/30 hover:text-[var(--color-texto)] transition-colors">Cuentas falsas</button>
       <button type="button" class="rounded-full border border-white/10 px-3 py-1 text-xs font-[var(--font-mono)] text-[var(--color-muted)] hover:border-white/30 hover:text-[var(--color-texto)] transition-colors">Operadores coordinados</button>
-      <span class="ml-auto text-xs text-[var(--color-muted)] font-[var(--font-mono)]">1 caso · 0 publicados</span>
+      <span class="ml-auto text-xs text-[var(--color-muted)] font-[var(--font-mono)]">2 casos · 1 publicado</span>
     </div>
   </section>
 
@@ -126,11 +126,48 @@ const categoriaLabel: Record<string, string> = {
       </ScrollReveal>
 
       <ScrollReveal delay={120}>
+        <div class="mt-8 rounded-lg border border-[var(--color-verde)]/30 bg-[var(--color-surface)] p-8 md:p-10">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <Badge variant="verde" dot>Publicado</Badge>
+            <span class="font-[var(--font-mono)] text-xs text-[var(--color-muted)]">2026-10-06 · Bluesky</span>
+          </div>
+          <h2 class="font-[var(--font-display)] text-2xl md:text-3xl mb-3">
+            Primera extracción: lo que encontramos (y lo que no)
+          </h2>
+          <p class="text-[var(--color-muted)] leading-relaxed mb-6 max-w-3xl">
+            Análisis sobre 157 posts únicos de Bluesky con 4 términos de búsqueda.
+            Una cuenta con señal de alerta (confianza 0.65, no etiquetada como bot),
+            cero coordinaciones detectadas, cero textos repetidos. Reportamos también
+            la ausencia de evidencia como hallazgo.
+          </p>
+          <div class="grid gap-3 md:grid-cols-4 mb-6">
+            <div class="rounded-md border border-white/5 bg-[var(--color-bg)] p-3">
+              <p class="font-[var(--font-mono)] text-xs text-[var(--color-muted)]">Posts</p>
+              <p class="font-[var(--font-display)] text-xl text-[var(--color-texto)]">157</p>
+            </div>
+            <div class="rounded-md border border-white/5 bg-[var(--color-bg)] p-3">
+              <p class="font-[var(--font-mono)] text-xs text-[var(--color-muted)]">Autores</p>
+              <p class="font-[var(--font-display)] text-xl text-[var(--color-texto)]">100</p>
+            </div>
+            <div class="rounded-md border border-white/5 bg-[var(--color-bg)] p-3">
+              <p class="font-[var(--font-mono)] text-xs text-[var(--color-muted)]">Coordinaciones</p>
+              <p class="font-[var(--font-display)] text-xl text-[var(--color-verde-claro)]">0</p>
+            </div>
+            <div class="rounded-md border border-white/5 bg-[var(--color-bg)] p-3">
+              <p class="font-[var(--font-mono)] text-xs text-[var(--color-muted)]">En seguimiento</p>
+              <p class="font-[var(--font-display)] text-xl text-[var(--color-ambar-claro)]">1</p>
+            </div>
+          </div>
+          <Boton variant="primario" href="/casos/primera-extraccion">Ver caso completo →</Boton>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal delay={200}>
         <div class="mt-8 rounded-lg border border-dashed border-white/10 bg-[var(--color-surface)] p-10 text-center">
           <Badge variant="ambar" dot>En preparación</Badge>
-          <h2 class="font-[var(--font-display)] text-2xl mt-4 mb-2">Sin casos publicados todavía</h2>
+          <h2 class="font-[var(--font-display)] text-2xl mt-4 mb-2">Más casos en camino</h2>
           <p class="text-[var(--color-muted)] max-w-md mx-auto mb-6">
-            El primer caso real se publica cuando el pipeline de la Fase 1 produzca datos verificables. Mientras tanto, puedes revisar la metodología para entender cómo documentamos.
+            El pipeline sigue capturando datos. Cuando el dataset crezca y detectemos patrones con confianza ≥0.7, publicaremos nuevos casos aquí.
           </p>
           <Boton variant="secundario" href="/metodologia">Ver metodología</Boton>
         </div>

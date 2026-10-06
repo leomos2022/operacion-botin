@@ -1,0 +1,309 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Boton from '../../components/Boton.astro';
+import Badge from '../../components/Badge.astro';
+import ScrollReveal from '../../components/ScrollReveal.astro';
+import Stat from '../../components/Stat.astro';
+
+const fechaAnalisis = '2026-10-06';
+const totalPosts = 157;
+const totalAutores = 100;
+const totalDuplicados = 14;
+const terminos = [
+  { termino: 'elecciones Colombia', posts: 29 },
+  { termino: 'Abelardo de la Espriella', posts: 45 },
+  { termino: 'desinformación Colombia', posts: 50 },
+  { termino: 'bots políticos', posts: 47 },
+];
+
+const topAutores = [
+  { seudonimo: '@cuenta***63', posts: 26, alerta: true, confianza: 0.65 },
+  { seudonimo: '@cuenta***27', posts: 20, alerta: false, confianza: 0.0 },
+  { seudonimo: '@cuenta***55', posts: 3, alerta: false, confianza: 0.0 },
+  { seudonimo: '@cuenta***07', posts: 3, alerta: false, confianza: 0.0 },
+  { seudonimo: '@elespectador.com', posts: 3, alerta: false, confianza: 0.0, publico: true },
+  { seudonimo: '@cuenta***19', posts: 2, alerta: false, confianza: 0.0 },
+  { seudonimo: '@cuenta***22', posts: 2, alerta: false, confianza: 0.0 },
+  { seudonimo: '@cuenta***71', posts: 2, alerta: false, confianza: 0.0 },
+  { seudonimo: '@cuenta***38', posts: 2, alerta: false, confianza: 0.0 },
+  { seudonimo: '@cuenta***12', posts: 2, alerta: false, confianza: 0.0 },
+];
+
+const hashtags = [
+  { tag: '#Colombia', count: 7 },
+  { tag: '#TerremotoColombia', count: 7 },
+  { tag: '#desinformación', count: 6 },
+  { tag: '#elecciones', count: 5 },
+  { tag: '#subsidios', count: 3 },
+];
+
+const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
+---
+
+<BaseLayout
+  rutaActiva="/casos"
+  title="Primera extracción — Caso documentado · Operación Botín"
+  description="Primer análisis del dataset Bluesky: 157 posts, 100 autores, 4 términos. Una cuenta con señal de alerta, cero coordinaciones detectadas."
+>
+  <section class="border-b border-white/5">
+    <div class="mx-auto max-w-7xl px-6 py-16">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <Badge variant="verde" dot>Primer caso documentado</Badge>
+        <Badge variant="rojo">Bot · confianza 0.65 (no publicado)</Badge>
+        <Badge variant="muted">Análisis: {fechaAnalisis}</Badge>
+      </div>
+      <h1 class="font-[var(--font-display)] text-4xl md:text-5xl mb-4">
+        Primera extracción: lo que encontramos (y lo que no).
+      </h1>
+      <p class="text-[var(--color-muted)] max-w-3xl text-lg leading-relaxed">
+        Este es el primer análisis del observatorio sobre datos reales de Bluesky. Mostramos los hallazgos con transparencia: incluida la ausencia de coordinación. Eso es lo que diferencia a un observatorio serio de un panel de opinión.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-b border-white/5 bg-[var(--color-surface)]/30">
+    <div class="mx-auto max-w-7xl px-6 py-12">
+      <ScrollReveal>
+        <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">El dataset</h2>
+        <div class="grid gap-4 md:grid-cols-4">
+          <Stat etiqueta="Posts únicos" valor={totalPosts.toString()} fuente="Bluesky API · 2026-10-06" variante="destacada" />
+          <Stat etiqueta="Autores únicos" valor={totalAutores.toString()} fuente="100 handles distintos" />
+          <Stat etiqueta="Términos de búsqueda" valor="4" fuente="elecciones, Espriella, desinformación, bots" />
+          <Stat etiqueta="Duplicados descartados" valor={totalDuplicados.toString()} fuente="Mismo post en varios términos" />
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <section>
+    <div class="mx-auto max-w-7xl px-6 py-16">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-3">01 · Términos monitoreados</p>
+        <h2 class="font-[var(--font-display)] text-3xl mb-6">Qué buscamos.</h2>
+        <p class="text-[var(--color-muted)] leading-relaxed max-w-3xl mb-10">
+          Cuatro términos relacionados con elecciones, política colombiana y desinformación. Cada uno produce un dataset independiente; los combinamos después quitando duplicados.
+        </p>
+      </ScrollReveal>
+      <ScrollReveal delay={120}>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {terminos.map((t) => (
+            <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-5">
+              <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Término</p>
+              <p class="text-[var(--color-texto)] font-semibold mb-3">"{t.termino}"</p>
+              <p class="font-[var(--font-display)] text-2xl text-[var(--color-rojo)]">{t.posts}</p>
+              <p class="text-xs text-[var(--color-muted)] font-[var(--font-mono)]">posts capturados</p>
+            </div>
+          ))}
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5 bg-[var(--color-surface)]/30">
+    <div class="mx-auto max-w-7xl px-6 py-16">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-3">02 · Hallazgos</p>
+        <h2 class="font-[var(--font-display)] text-3xl mb-6">Qué encontramos.</h2>
+      </ScrollReveal>
+      <div class="grid gap-6 md:grid-cols-3">
+        <ScrollReveal>
+          <div class="h-full rounded-lg border border-[var(--color-ambar)]/30 bg-[var(--color-bg)] p-6">
+            <Badge variant="ambar" dot>Señal leve</Badge>
+            <h3 class="font-[var(--font-display)] text-xl mt-3 mb-2">1 cuenta atípica</h3>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">
+              Una cuenta con <strong class="text-[var(--color-texto)]">26 posts</strong> (16% del dataset) dispara señal de cobertura horaria amplia. Confianza <strong class="text-[var(--color-ambar-claro)]">0.65</strong> — por debajo del umbral de publicación (0.7). No se etiqueta como bot.
+            </p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={120}>
+          <div class="h-full rounded-lg border border-[var(--color-verde)]/30 bg-[var(--color-bg)] p-6">
+            <Badge variant="verde" dot>Sin evidencia</Badge>
+            <h3 class="font-[var(--font-display)] text-xl mt-3 mb-2">0 coordinaciones</h3>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">
+              No se detectaron pares de cuentas publicando en ventanas de 60 segundos con similitud de texto &gt;30%. <strong class="text-[var(--color-texto)]">No hay evidencia de operación coordinada</strong> en este dataset.
+            </p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal delay={240}>
+          <div class="h-full rounded-lg border border-[var(--color-verde)]/30 bg-[var(--color-bg)] p-6">
+            <Badge variant="verde" dot>Sin evidencia</Badge>
+            <h3 class="font-[var(--font-display)] text-xl mt-3 mb-2">0 textos repetidos</h3>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">
+              Ningún post se repite entre cuentas distintas. <strong class="text-[var(--color-texto)]">No hay evidencia de copia-pegada masiva</strong> ni de uso de plantillas compartidas en este dataset.
+            </p>
+          </div>
+        </ScrollReveal>
+      </div>
+      <ScrollReveal delay={300}>
+        <div class="mt-8 rounded-lg border-l-2 border-[var(--color-verde)] bg-[var(--color-bg)] p-6">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-verde-claro)] mb-2">Lectura honesta</p>
+          <p class="text-[var(--color-texto)] text-lg leading-relaxed">
+            Con 157 posts en 4 términos, <strong>no detectamos operación coordinada</strong>. Sí identificamos una cuenta con volumen atípico que merece seguimiento. El observatorio no inventa operaciones donde no las hay; reportar la ausencia de evidencia es también un hallazgo.
+          </p>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5">
+    <div class="mx-auto max-w-7xl px-6 py-16">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-3">03 · Autores con más posts</p>
+        <h2 class="font-[var(--font-display)] text-3xl mb-6">Quién publica más.</h2>
+        <p class="text-[var(--color-muted)] leading-relaxed max-w-3xl mb-8">
+          Los handles están seudonimizados (regla editorial §4.4), excepto cuando son medios públicos reconocidos. <strong class="text-[var(--color-texto)]">Publicar mucho no implica ser bot:</strong> un medio legítimo puede tener alto volumen. La señal de alerta es una combinación de volumen + patrón temporal + repetición de contenido.
+        </p>
+      </ScrollReveal>
+      <ScrollReveal delay={120}>
+        <div class="overflow-x-auto rounded-lg border border-white/5">
+          <table class="w-full text-sm">
+            <thead class="bg-[var(--color-surface)]">
+              <tr>
+                <th class="px-4 py-3 text-left font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)]">Seudónimo</th>
+                <th class="px-4 py-3 text-right font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)]">Posts</th>
+                <th class="px-4 py-3 text-right font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)]">Confianza bot</th>
+                <th class="px-4 py-3 text-left font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-muted)]">Estado</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+              {topAutores.map((a) => (
+                <tr class="hover:bg-white/[0.02] transition-colors">
+                  <td class="px-4 py-3 font-[var(--font-mono)] text-[var(--color-texto)]">
+                    {a.seudonimo}
+                    {a.publico && <span class="ml-2 text-xs text-[var(--color-muted)]">(medio público)</span>}
+                  </td>
+                  <td class="px-4 py-3 text-right font-[var(--font-mono)] text-[var(--color-texto)]">{a.posts}</td>
+                  <td class="px-4 py-3 text-right font-[var(--font-mono)]">
+                    {a.confianza > 0 ? (
+                      <span class={a.alerta ? 'text-[var(--color-ambar-claro)]' : 'text-[var(--color-muted)]'}>
+                        {a.confianza.toFixed(2)}
+                      </span>
+                    ) : (
+                      <span class="text-[var(--color-muted)]/40">—</span>
+                    )}
+                  </td>
+                  <td class="px-4 py-3">
+                    {a.alerta ? (
+                      <Badge variant="ambar" dot>Seguimiento</Badge>
+                    ) : a.publico ? (
+                      <Badge variant="muted">Medio</Badge>
+                    ) : (
+                      <Badge variant="muted">Sin señal</Badge>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5 bg-[var(--color-surface)]/30">
+    <div class="mx-auto max-w-7xl px-6 py-16">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-3">04 · Hashtags</p>
+        <h2 class="font-[var(--font-display)] text-3xl mb-6">Temas recurrentes.</h2>
+        <p class="text-[var(--color-muted)] leading-relaxed max-w-3xl mb-10">
+          Hashtags más frecuentes en el dataset. Un hashtag que aparece mucho <strong class="text-[var(--color-texto)]">no es evidencia de coordinación</strong>: puede ser tendencia orgánica. La señal de coordinación aparece cuando el mismo hashtag es usado simultáneamente por cuentas desconectadas.
+        </p>
+      </ScrollReveal>
+      <ScrollReveal delay={120}>
+        <div class="space-y-3">
+          {hashtags.map((h) => (
+            <div class="flex items-center gap-4">
+              <div class="w-40 font-[var(--font-mono)] text-sm text-[var(--color-texto)]">{h.tag}</div>
+              <div class="flex-1 h-6 bg-[var(--color-bg)] rounded-md overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-[var(--color-rojo)]/40 to-[var(--color-rojo)] transition-all" style={`width: ${(h.count / maxHashtagCount) * 100}%`}></div>
+              </div>
+              <div class="w-12 text-right font-[var(--font-mono)] text-sm text-[var(--color-muted)]">{h.count}</div>
+            </div>
+          ))}
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5">
+    <div class="mx-auto max-w-3xl px-6 py-16">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-3">05 · Limitaciones</p>
+        <h2 class="font-[var(--font-display)] text-3xl mb-6">Qué no podemos afirmar.</h2>
+        <ul class="space-y-5">
+          <li class="flex gap-4">
+            <span class="font-[var(--font-mono)] text-[var(--color-rojo-claro)] flex-shrink-0">01</span>
+            <div>
+              <p class="text-[var(--color-texto)] font-semibold mb-1">Dataset pequeño.</p>
+              <p class="text-sm text-[var(--color-muted)] leading-relaxed">157 posts en 4 términos es insuficiente para detectar patrones sutiles de coordinación. Un operador minimamente cuidadoso puede pasar desapercibido con este volumen.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-[var(--font-mono)] text-[var(--color-rojo-claro)] flex-shrink-0">02</span>
+            <div>
+              <p class="text-[var(--color-texto)] font-semibold mb-1">Solo Bluesky.</p>
+              <p class="text-sm text-[var(--color-muted)] leading-relaxed">No cubrimos Twitter/X, Telegram, Facebook ni WhatsApp. Las operaciones de desinformación suelen ser multicanal; lo que no vemos en Bluesky puede existir en otra plataforma.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-[var(--font-mono)] text-[var(--color-rojo-claro)] flex-shrink-0">03</span>
+            <div>
+              <p class="text-[var(--color-texto)] font-semibold mb-1">Sin atribución de intenciones.</p>
+              <p class="text-sm text-[var(--color-muted)] leading-relaxed">Describimos comportamiento, no intenciones. Decir 'esta cuenta publica mucho a las 3am' no es lo mismo que decir 'para influir en la elección X'. La atribución requiere investigación periodística firmada.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="font-[var(--font-mono)] text-[var(--color-rojo-claro)] flex-shrink-0">04</span>
+            <div>
+              <p class="text-[var(--color-texto)] font-semibold mb-1">Sin identificación de operador humano.</p>
+              <p class="text-sm text-[var(--color-muted)] leading-relaxed">Aunque detectáramos un bot con confianza alta, no podemos atribuirlo a una persona o institución específica sin evidencia adicional externa.</p>
+            </div>
+          </li>
+        </ul>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5 bg-[var(--color-surface)]/30">
+    <div class="mx-auto max-w-4xl px-6 py-16">
+      <ScrollReveal>
+        <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-3">06 · Próximos pasos</p>
+        <h2 class="font-[var(--font-display)] text-3xl mb-6">Cómo continúa esto.</h2>
+        <div class="grid gap-4 md:grid-cols-3">
+          <div class="rounded-lg border border-white/5 bg-[var(--color-bg)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Más términos</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Ampliar búsqueda a 20+ términos para triplicar el dataset y mejorar la señal.</p>
+          </div>
+          <div class="rounded-lg border border-white/5 bg-[var(--color-bg)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Telegram</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Añadir extractor de canales públicos de Telegram, donde se mueve mucha desinformación en LatAm.</p>
+          </div>
+          <div class="rounded-lg border border-white/5 bg-[var(--color-bg)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Seguimiento</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">La cuenta @cuenta***63 entra en seguimiento longitudinal: capturas semanales para ver si el patrón persiste.</p>
+          </div>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+
+  <section class="border-t border-white/5">
+    <div class="mx-auto max-w-3xl px-6 py-12">
+      <ScrollReveal>
+        <div class="rounded-lg border-l-2 border-[var(--color-rojo)] bg-[var(--color-surface)] p-6">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Fuente y método</p>
+          <p class="text-[var(--color-muted)] leading-relaxed mb-3">
+            Datos capturados vía API pública de Bluesky (AT Protocol) el {fechaAnalisis}, usando el pipeline <code class="font-[var(--font-mono)] text-[var(--color-texto)]">operacion-botin/pipeline</code>. Los 157 posts únicos están disponibles en formato Parquet en <code class="font-[var(--font-mono)] text-[var(--color-texto)]">packages/shared/data/raw/bluesky/</code> con ficha de metadatos por extracción.
+          </p>
+          <p class="text-[var(--color-muted)] leading-relaxed">
+            Análisis ejecutado con 3 familias de heurísticas (temporal, contenido, grafo) según la metodología pública del observatorio. Identificadores seudonimizados salvo medios públicos reconocidos.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <Boton variant="secundario" size="sm" href="/metodologia">Ver metodología</Boton>
+            <Boton variant="fantasma" size="sm" href="/casos">Volver a casos</Boton>
+          </div>
+        </div>
+      </ScrollReveal>
+    </div>
+  </section>
+</BaseLayout>
