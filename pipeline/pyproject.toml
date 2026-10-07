@@ -16,6 +16,8 @@ dependencies = [
     "python-dotenv>=1.0.1",
     "click>=8.1.0",
     "rich>=13.9.0",
+    "telethon>=1.36.0",
+    "cryptg>=0.4.0",
 ]
 
 [project.optional-dependencies]

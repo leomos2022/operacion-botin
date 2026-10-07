@@ -32,18 +32,23 @@ _RAW_DIR = _REPO_ROOT / "packages" / "shared" / "data" / "raw"
 _HALLAZGOS_DIR = _REPO_ROOT / "packages" / "shared" / "data" / "hallazgos"
 
 
-def cargar_posts_bluesky() -> pd.DataFrame:
-    """Carga todos los Parquet de Bluesky disponibles."""
-    archivos = list(_RAW_DIR.glob("bluesky/**/*.parquet"))
+def cargar_posts() -> pd.DataFrame:
+    """Carga todos los Parquet disponibles (Bluesky + Telegram + otros)."""
+    archivos = list(_RAW_DIR.glob("**/*.parquet"))
     if not archivos:
         raise RuntimeError(
-            f"No se encontraron Parquet en {_RAW_DIR / "bluesky"}. "
+            f"No se encontraron Parquet en {_RAW_DIR}. "
             "Ejecuta primero el extractor."
         )
     dfs = [pd.read_parquet(a) for a in archivos]
     df = pd.concat(dfs, ignore_index=True)
     df = df.drop_duplicates(subset=["id_plataforma"]).reset_index(drop=True)
     return df
+
+
+def cargar_posts_bluesky() -> pd.DataFrame:
+    """Carga solo Parquet de Bluesky (compat hacia atrás)."""
+    return cargar_posts()[lambda d: d["plataforma"] == "bluesky"]
 
 
 def analizar_temporal(df: pd.DataFrame) -> dict[str, Any]:
@@ -164,14 +169,14 @@ def analizar_grafo(df: pd.DataFrame) -> dict[str, Any]:
 
 def generar_hallazgos() -> dict[str, Any]:
     """Ejecuta los 3 análisis y produce un JSON consolidado de hallazgos."""
-    _console.print("[bold]Cargando dataset Bluesky...[/bold]")
-    df = cargar_posts_bluesky()
+    _console.print("[bold]Cargando dataset...[/bold]")
+    df = cargar_posts()
     _console.print(f"[green]✓[/green] {len(df)} posts únicos cargados")
 
     resumen = {
         "metadata": {
             "fecha_analisis": datetime.now().isoformat(),
-            "plataforma": Plataforma.BLUESKY.value,
+            "plataformas_cubiertas": sorted(df["plataforma"].unique().tolist()),
             "total_posts_unicos": len(df),
             "total_autores_unicos": df["autor_handle"].nunique(),
             "periodo_captura": {

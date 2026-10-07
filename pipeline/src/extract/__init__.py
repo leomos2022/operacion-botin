@@ -1,12 +1,11 @@
 """Módulo de extracción.
 
-Recolección de datos desde plataformas sociales (Twitter/X, Telegram,
-Bluesky) con rate-limit estricto y registro de fuente de cada registro.
-
 CLI:
     uv run python -m src.extract --plataforma bluesky --termino "elecciones Colombia"
+    uv run python -m src.extract --plataforma telegram --canal @nombre_canal --limite 50
 """
 
 from .bluesky import ExtractorBluesky
+from .telegram import ExtractorTelegram
 
-__all__ = ["ExtractorBluesky"]
+__all__ = ["ExtractorBluesky", "ExtractorTelegram"]

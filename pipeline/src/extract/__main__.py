@@ -2,7 +2,7 @@
 
 Uso:
     uv run python -m src.extract --plataforma bluesky --termino "elecciones Colombia"
-    uv run python -m src.extract --plataforma bluesky --termino "elecciones Colombia" --limite 50
+    uv run python -m src.extract --plataforma telegram --canal @nombre_canal --limite 50
 """
 
 from __future__ import annotations
@@ -16,6 +16,7 @@ from rich.panel import Panel
 from rich.table import Table
 
 from src.extract.bluesky import ExtractorBluesky
+from src.extract.telegram import ExtractorTelegram
 from src.models import Plataforma
 from src.storage import guardar_extraccion
 
@@ -32,8 +33,14 @@ _console = Console()
 @click.option(
     "--termino",
     type=str,
-    required=True,
-    help="Término de búsqueda (p. ej. \"elecciones Colombia\").",
+    default=None,
+    help="Término de búsqueda (Bluesky). Ej: 'elecciones Colombia'.",
+)
+@click.option(
+    "--canal",
+    type=str,
+    default=None,
+    help="Canal de Telegram a capturar. Ej: '@nombre_canal' o '-100xxx'.",
 )
 @click.option(
     "--limite",
@@ -48,26 +55,39 @@ _console = Console()
     default=False,
     help="No guardar en Parquet. Solo mostrar resultados en consola.",
 )
-def main(plataforma: str, termino: str, limite: int, no_guardar: bool) -> None:
-    """Ejecuta una extracción de posts públicos según la plataforma y término."""
+def main(
+    plataforma: str,
+    termino: str | None,
+    canal: str | None,
+    limite: int,
+    no_guardar: bool,
+) -> None:
+    """Ejecuta una extracción de posts públicos según la plataforma."""
+    if plataforma == Plataforma.BLUESKY.value and not termino:
+        _console.print("[red]✗[/red] Bluesky requiere --termino. Ej: --termino 'elecciones Colombia'")
+        sys.exit(1)
+    if plataforma == Plataforma.TELEGRAM.value and not canal:
+        _console.print("[red]✗[/red] Telegram requiere --canal. Ej: --canal @nombre_canal")
+        sys.exit(1)
+
+    desc_extra = f"Término: '[cyan]{termino}[/cyan]'" if termino else f"Canal: [cyan]{canal}[/cyan]"
     _console.print(
         Panel.fit(
             f"[bold]Operación Botín[/bold] — Pipeline de extracción\n"
-            f"Plataforma: [cyan]{plataforma}[/cyan] · "
-            f"Término: \'[cyan]{termino}[/cyan]\' · Límite: {limite}",
+            f"Plataforma: [cyan]{plataforma}[/cyan] · {desc_extra} · Límite: {limite}",
             border_style="red",
         )
     )
 
     if plataforma == Plataforma.BLUESKY.value:
         extractor = ExtractorBluesky()
+        resultado = extractor.buscar_posts(termino=termino or "", limite=limite)
+    elif plataforma == Plataforma.TELEGRAM.value:
+        extractor = ExtractorTelegram()
+        resultado = extractor.capturar_mensajes(canal=canal or "", limite=limite)
     else:
-        _console.print(
-            f"[red]✗[/red] Extractor para \'{plataforma}\' aún no implementado."
-        )
+        _console.print(f"[red]✗[/red] Extractor para '{plataforma}' aún no implementado.")
         sys.exit(1)
-
-    resultado = extractor.buscar_posts(termino=termino, limite=limite)
 
     _mostrar_resumen(resultado)
 
@@ -80,13 +100,12 @@ def main(plataforma: str, termino: str, limite: int, no_guardar: bool) -> None:
 
 
 def _mostrar_resumen(resultado: Any) -> None:
-    """Muestra un resumen tabular de la extracción en consola."""
     table = Table(title=f"Resumen — {resultado.plataforma.value}", show_header=True)
     table.add_column("Métrica", style="cyan", no_wrap=True)
     table.add_column("Valor", style="white")
 
     table.add_row("Plataforma", resultado.plataforma.value)
-    table.add_row("Término de búsqueda", resultado.termino_busqueda or "—")
+    table.add_row("Término/Canal", resultado.termino_busqueda or "—")
     table.add_row("Posts capturados", str(resultado.total_capturados))
     table.add_row("Errores", str(len(resultado.errores)))
     table.add_row("Duración", f"{resultado.duracion_segundos:.2f}s")
