@@ -1,0 +1,264 @@
+---
+/**
+ * BotIlustracion — bot animado en SVG + CSS puro.
+ *
+ * Representa la automatización y la IA en la red. Diseño geométrico
+ * minimalista con paleta del observatorio (grises oscuros, blanco
+ * plateado, acentos rojo salmón).
+ *
+ * Animaciones:
+ * - Levitación: el bot completo flota suave (translateY infinito)
+ * - Escaneo: línea que recorre el visor + pulso luminoso en los ojos
+ * - Órbita: símbolos de red (</>, 01, wifi) rotan alrededor del bot
+ *
+ * Accesibilidad: respetamos prefers-reduced-motion (las animaciones
+ * se desactivan si el usuario lo prefiere).
+ */
+---
+
+<div class="bot-container" role="img" aria-label="Ilustración animada de un bot vigilando la red">
+  <div class="orbitas">
+    <svg class="anillo anillo-1" viewBox="0 0 400 400" aria-hidden="true">
+      <circle cx="200" cy="200" r="180" fill="none" stroke="var(--color-rojo)" stroke-width="1" stroke-dasharray="2 8" opacity="0.25"></circle>
+    </svg>
+    <svg class="anillo anillo-2" viewBox="0 0 400 400" aria-hidden="true">
+      <circle cx="200" cy="200" r="150" fill="none" stroke="var(--color-texto)" stroke-width="1" stroke-dasharray="1 12" opacity="0.15"></circle>
+    </svg>
+
+    <div class="simbolo simbolo-1">&lt;/&gt;</div>
+    <div class="simbolo simbolo-2">01</div>
+    <div class="simbolo simbolo-3">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+        <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+        <line x1="12" y1="20" x2="12.01" y2="20"></line>
+      </svg>
+    </div>
+    <div class="simbolo simbolo-4">10</div>
+  </div>
+
+  <div class="bot-flotante">
+    <svg class="bot-svg" viewBox="0 0 240 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="120" y1="40" x2="120" y2="20" stroke="var(--color-texto)" stroke-width="2" opacity="0.6"></line>
+      <circle class="antena-tip" cx="120" cy="16" r="4" fill="var(--color-rojo)"></circle>
+
+      <path d="M 60 60 Q 60 40 80 40 L 160 40 Q 180 40 180 60 L 180 130 Q 180 150 160 150 L 80 150 Q 60 150 60 130 Z" fill="var(--color-surface)" stroke="var(--color-texto)" stroke-width="1.5" opacity="0.95"></path>
+
+      <line x1="75" y1="70" x2="165" y2="70" stroke="var(--color-texto)" stroke-width="1" opacity="0.3"></line>
+
+      <rect x="78" y="85" width="84" height="32" rx="4" fill="var(--color-bg)" stroke="var(--color-texto)" stroke-width="1" opacity="0.8"></rect>
+
+      <circle class="ojo ojo-izq" cx="105" cy="101" r="5" fill="var(--color-rojo)"></circle>
+      <circle class="ojo ojo-der" cx="135" cy="101" r="5" fill="var(--color-rojo)"></circle>
+
+      <line class="scan-line" x1="80" y1="101" x2="160" y2="101" stroke="var(--color-rojo-claro)" stroke-width="1.5" opacity="0.9"></line>
+
+      <line x1="68" y1="105" x2="72" y2="105" stroke="var(--color-texto)" stroke-width="2" opacity="0.4"></line>
+      <line x1="68" y1="115" x2="72" y2="115" stroke="var(--color-texto)" stroke-width="2" opacity="0.4"></line>
+      <line x1="168" y1="105" x2="172" y2="105" stroke="var(--color-texto)" stroke-width="2" opacity="0.4"></line>
+      <line x1="168" y1="115" x2="172" y2="115" stroke="var(--color-texto)" stroke-width="2" opacity="0.4"></line>
+
+      <rect x="110" y="150" width="20" height="14" fill="var(--color-surface)" stroke="var(--color-texto)" stroke-width="1" opacity="0.7"></rect>
+
+      <path d="M 70 164 Q 70 160 74 160 L 166 164 Q 170 164 170 168 L 170 220 Q 170 230 160 230 L 80 230 Q 70 230 70 220 Z" fill="var(--color-surface)" stroke="var(--color-texto)" stroke-width="1.5" opacity="0.95"></path>
+
+      <line x1="100" y1="180" x2="140" y2="180" stroke="var(--color-rojo)" stroke-width="2" opacity="0.6"></line>
+      <circle class="indicator" cx="120" cy="195" r="3" fill="var(--color-rojo)"></circle>
+
+      <line x1="90" y1="210" x2="150" y2="210" stroke="var(--color-texto)" stroke-width="1" opacity="0.2"></line>
+      <line x1="90" y1="218" x2="130" y2="218" stroke="var(--color-texto)" stroke-width="1" opacity="0.2"></line>
+
+      <line x1="60" y1="170" x2="50" y2="200" stroke="var(--color-texto)" stroke-width="2" opacity="0.6"></line>
+      <circle cx="48" cy="205" r="4" fill="var(--color-surface)" stroke="var(--color-texto)" stroke-width="1.5"></circle>
+      <line x1="180" y1="170" x2="190" y2="200" stroke="var(--color-texto)" stroke-width="2" opacity="0.6"></line>
+      <circle cx="192" cy="205" r="4" fill="var(--color-surface)" stroke="var(--color-texto)" stroke-width="1.5"></circle>
+
+      <ellipse class="sombra-bot" cx="120" cy="255" rx="60" ry="6" fill="var(--color-rojo)" opacity="0.15"></ellipse>
+    </svg>
+  </div>
+</div>
+
+<style>
+  .bot-container {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .orbitas {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .anillo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: rotar 60s linear infinite;
+  }
+
+  .anillo-2 {
+    width: 80%;
+    height: 80%;
+    animation: rotar-reverse 45s linear infinite;
+  }
+
+  .bot-flotante {
+    position: relative;
+    width: 60%;
+    height: 60%;
+    z-index: 2;
+    animation: levitar 4s ease-in-out infinite;
+  }
+
+  .bot-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 8px 24px rgba(229, 72, 77, 0.15));
+  }
+
+  .ojo {
+    filter: drop-shadow(0 0 4px var(--color-rojo));
+    animation: pulso-ojo 2.5s ease-in-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  .ojo-der {
+    animation-delay: 0.4s;
+  }
+
+  .scan-line {
+    animation: escanear 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 3px var(--color-rojo-claro));
+  }
+
+  .indicator {
+    filter: drop-shadow(0 0 3px var(--color-rojo));
+    animation: pulso-suave 2s ease-in-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  .antena-tip {
+    filter: drop-shadow(0 0 4px var(--color-rojo));
+    animation: pulso-suave 1.8s ease-in-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  .sombra-bot {
+    animation: sombra 4s ease-in-out infinite;
+  }
+
+  .simbolo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 28px;
+    height: 28px;
+    margin: -14px 0 0 -14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-rojo-claro);
+    opacity: 0.7;
+  }
+
+  .simbolo svg {
+    width: 18px;
+    height: 18px;
+    color: var(--color-rojo-claro);
+  }
+
+  .simbolo-1 { animation: orbitar-1 20s linear infinite; }
+  .simbolo-2 { animation: orbitar-2 20s linear infinite; color: var(--color-texto); opacity: 0.5; }
+  .simbolo-3 { animation: orbitar-3 20s linear infinite; }
+  .simbolo-4 { animation: orbitar-4 20s linear infinite; color: var(--color-texto); opacity: 0.5; }
+
+  @keyframes levitar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  @keyframes pulso-ojo {
+    0%, 100% { opacity: 1; filter: drop-shadow(0 0 4px var(--color-rojo)); }
+    50% { opacity: 0.6; filter: drop-shadow(0 0 10px var(--color-rojo)) drop-shadow(0 0 18px var(--color-rojo)); }
+  }
+
+  @keyframes escanear {
+    0%, 100% { transform: translateX(-32px); opacity: 0.3; }
+    50% { transform: translateX(32px); opacity: 1; }
+  }
+
+  @keyframes pulso-suave {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  @keyframes sombra {
+    0%, 100% { opacity: 0.15; transform: scaleX(1); }
+    50% { opacity: 0.08; transform: scaleX(0.85); }
+  }
+
+  @keyframes rotar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes rotar-reverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
+
+  @keyframes orbitar-1 {
+    from { transform: rotate(0deg) translateX(180px) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(180px) rotate(-360deg); }
+  }
+  @keyframes orbitar-2 {
+    from { transform: rotate(90deg) translateX(180px) rotate(-90deg); }
+    to   { transform: rotate(450deg) translateX(180px) rotate(-450deg); }
+  }
+  @keyframes orbitar-3 {
+    from { transform: rotate(180deg) translateX(180px) rotate(-180deg); }
+    to   { transform: rotate(540deg) translateX(180px) rotate(-540deg); }
+  }
+  @keyframes orbitar-4 {
+    from { transform: rotate(270deg) translateX(180px) rotate(-270deg); }
+    to   { transform: rotate(630deg) translateX(180px) rotate(-630deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bot-flotante, .anillo, .ojo, .scan-line, .indicator, .antena-tip, .sombra-bot, .simbolo {
+      animation: none !important;
+    }
+    .scan-line { opacity: 0.6; }
+  }
+
+  @media (max-width: 768px) {
+    .bot-container { max-width: 280px; }
+    .bot-flotante { width: 65%; height: 65%; }
+    .simbolo {
+      width: 24px; height: 24px; margin: -12px 0 0 -12px; font-size: 10px;
+    }
+    .simbolo svg { width: 14px; height: 14px; }
+    .simbolo-1, .simbolo-2, .simbolo-3, .simbolo-4 { animation: none; }
+    .simbolo-1 { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+    .simbolo-2 { transform: rotate(90deg) translateX(120px) rotate(-90deg); }
+    .simbolo-3 { transform: rotate(180deg) translateX(120px) rotate(-180deg); }
+    .simbolo-4 { transform: rotate(270deg) translateX(120px) rotate(-270deg); }
+  }
+</style>

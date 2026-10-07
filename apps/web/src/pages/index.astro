@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Boton from '../components/Boton.astro';
+import BotIlustracion from '../components/BotIlustracion.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
 import Stat from '../components/Stat.astro';
 ---
@@ -15,26 +16,48 @@ import Stat from '../components/Stat.astro';
       </div>
     </div>
 
-    <div class="mx-auto max-w-7xl px-6 py-24 md:py-40">
-      <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-6">
-        Observatorio · Colombia · 2026
-      </p>
+    <div class="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:py-40">
+      <!-- Layout 2 columnas en desktop, 1 columna en móvil -->
+      <div class="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+        <!-- Columna izquierda: texto + CTAs -->
+        <div class="hero-texto">
+          <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-6">
+            Observatorio · Colombia · 2026
+          </p>
 
-      <h1 class="font-[var(--font-display)] text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl">
-        Hay cuentas que no duermen.
-        <span class="block text-[var(--color-rojo)] mt-2">Y están hablando contigo.</span>
-      </h1>
+          <h1 class="font-[var(--font-display)] text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-2xl">
+            Hay cuentas que no duermen.
+            <span class="block text-[var(--color-rojo)] mt-2">
+              Y están hablando contigo.
+            </span>
+          </h1>
 
-      <p class="mt-8 max-w-2xl text-lg md:text-xl text-[var(--color-muted)] leading-relaxed">
-        Operación Botín es un observatorio educativo que documenta cómo operan los bots y la desinformación en Colombia. Sin alarmismo, sin conspiraciones: con metodología abierta y datos con fuente.
-      </p>
+          <p class="mt-8 max-w-2xl text-lg md:text-xl text-[var(--color-muted)] leading-relaxed">
+            Operación Botín es un observatorio educativo que documenta cómo operan
+            los bots y la desinformación en Colombia. Sin alarmismo, sin
+            conspiraciones: con metodología abierta y datos con fuente.
+          </p>
 
-      <div class="mt-10 flex flex-wrap gap-4">
-        <Boton variant="primario" href="/metodologia">Ver metodología</Boton>
-        <Boton variant="secundario" href="/casos">Ver casos documentados</Boton>
+          <div class="mt-10 flex flex-wrap gap-4">
+            <Boton variant="primario" href="/metodologia">Ver metodología</Boton>
+            <Boton variant="secundario" href="/casos">Ver casos documentados</Boton>
+          </div>
+
+          <!-- Indicador de scroll (solo desktop, oculto en móvil donde va el bot después) -->
+          <div class="mt-16 hidden lg:flex items-center gap-3 text-[var(--color-muted)]">
+            <span class="font-[var(--font-mono)] text-xs uppercase tracking-wider">Desliza para explorar</span>
+            <span class="block h-px w-16 bg-gradient-to-r from-[var(--color-muted)] to-transparent"></span>
+          </div>
+        </div>
+
+        <!-- Columna derecha: bot animado -->
+        <div class="hero-bot order-first lg:order-last">
+          <BotIlustracion />
+        </div>
       </div>
 
-      <div class="mt-20 flex items-center gap-3 text-[var(--color-muted)]">
+      <!-- Indicador de scroll en móvil (después del bot) -->
+      <div class="mt-16 flex items-center justify-center gap-3 text-[var(--color-muted)] lg:hidden">
         <span class="font-[var(--font-mono)] text-xs uppercase tracking-wider">Desliza para explorar</span>
         <span class="block h-px w-16 bg-gradient-to-r from-[var(--color-muted)] to-transparent"></span>
       </div>
