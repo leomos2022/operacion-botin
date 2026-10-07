@@ -23,7 +23,6 @@ from rich.console import Console
 from rich.table import Table
 
 from src.features.seudonimizacion import es_publico_permitido, seudonimizar
-from src.models import Plataforma
 
 _console = Console()
 

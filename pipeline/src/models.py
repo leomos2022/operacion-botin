@@ -23,6 +23,7 @@ class Plataforma(StrEnum):
     TELEGRAM = "telegram"
     TWITTER = "twitter"
     FACEBOOK = "facebook"
+    YOUTUBE = "youtube"
     OTRA = "otra"
 
 

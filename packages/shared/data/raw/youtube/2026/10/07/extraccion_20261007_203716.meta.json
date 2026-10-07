@@ -1,0 +1,34 @@
+{
+  "fuente": {
+    "plataforma": "youtube",
+    "metodo_captura": "api_oficial",
+    "termino_busqueda": "mOlXULTP6z0",
+    "url_api": null
+  },
+  "fecha_captura_inicio": "2026-10-07T20:37:14.838042+00:00",
+  "fecha_captura_fin": "2026-10-07T20:37:16.255505+00:00",
+  "duracion_segundos": 1.417463,
+  "total_registros": 4,
+  "errores": [],
+  "esquema": {
+    "id": "PostCapturado v0.1",
+    "campos_principales": [
+      "id_plataforma",
+      "plataforma",
+      "metodo_captura",
+      "autor_handle",
+      "autor_id_plataforma",
+      "texto",
+      "url",
+      "fecha_publicacion",
+      "fecha_captura",
+      "termino_busqueda",
+      "hash_contenido",
+      "metadata_json"
+    ]
+  },
+  "archivo_parquet": "packages/shared/data/raw/youtube/2026/10/07/extraccion_20261007_203716.parquet",
+  "responsable": "pipeline v0.1",
+  "fecha_creacion_ficha": "2026-10-07T20:37:16.359765+00:00",
+  "notas": "Dataset crudo de extracción. Los identificadores de autor se seudonimizarán en la fase de features."
+}

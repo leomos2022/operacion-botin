@@ -6,9 +6,9 @@ import ScrollReveal from '../../components/ScrollReveal.astro';
 import Stat from '../../components/Stat.astro';
 
 const fechaAnalisis = '2026-10-07';
-const totalPosts = 241;
-const totalAutores = 111;
-const plataformas = 2;
+const totalPosts = 653;
+const totalAutores = 468;
+const plataformas = 3;
 
 const terminosBluesky = [
   { termino: 'elecciones Colombia', posts: 29 },
@@ -24,6 +24,14 @@ const canalesTelegram = [
   { canal: '@AgendaPublica', posts: 21, descripcion: 'Análisis político España/LatAm' },
 ];
 
+const videosYouTube = [
+  { titulo: '¿Reelección? Mensaje de De la Espriella y respuesta de Petro', canal: 'Noticias Caracol', comentarios: 4 },
+  { titulo: 'Elecciones 2026: propuestas de Cepeda y De la Espriella', canal: 'Noticias Caracol', comentarios: 98 },
+  { titulo: 'Este es Abelardo de la Espriella, el nuevo presidente', canal: 'La Pulla', comentarios: 100 },
+  { titulo: 'Decreto De la Espriella arma a la policía contra protestas', canal: 'Revista Raya', comentarios: 100 },
+  { titulo: 'Emisión Noticias RCN 7pm (10 ago 2026)', canal: 'Noticias RCN', comentarios: 21 },
+];
+
 const topAutores = [
   { seudonimo: '@cuenta***63', posts: 26, alerta: true, confianza: 0.65, plataforma: 'Bluesky' },
   { seudonimo: '@cuenta***80', posts: 23, alerta: false, confianza: 0.0, plataforma: 'Telegram' },
@@ -31,10 +39,10 @@ const topAutores = [
   { seudonimo: '@cuenta***27', posts: 20, alerta: false, confianza: 0.0, plataforma: 'Bluesky' },
   { seudonimo: '@cuenta***19', posts: 16, alerta: false, confianza: 0.0, plataforma: 'Telegram' },
   { seudonimo: '@cuenta***50', posts: 10, alerta: false, confianza: 0.0, plataforma: 'Telegram' },
+  { seudonimo: '@cuenta***01', posts: 4, alerta: false, confianza: 0.0, plataforma: 'YouTube' },
+  { seudonimo: '@cuenta***49', posts: 4, alerta: false, confianza: 0.0, plataforma: 'YouTube' },
   { seudonimo: '@cuenta***06', posts: 4, alerta: false, confianza: 0.0, plataforma: 'Telegram' },
-  { seudonimo: '@cuenta***55', posts: 3, alerta: false, confianza: 0.0, plataforma: 'Bluesky' },
-  { seudonimo: '@cuenta***07', posts: 3, alerta: false, confianza: 0.0, plataforma: 'Bluesky' },
-  { seudonimo: '@elespectador.com', posts: 3, alerta: false, confianza: 0.0, plataforma: 'Bluesky', publico: true },
+  { seudonimo: '@cuenta***72', posts: 3, alerta: false, confianza: 0.0, plataforma: 'YouTube' },
 ];
 
 const hashtags = [
@@ -55,7 +63,7 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
 <BaseLayout
   rutaActiva="/casos"
   title="Primera extracción multicanal — Caso documentado · Operación Botín"
-  description="Análisis multicanal: 241 posts de Bluesky y Telegram, 111 autores/canales. Una cuenta con señal de alerta, cero coordinaciones detectadas."
+  description="Análisis multicanal: 653 posts de Bluesky, Telegram y YouTube, 468 autores. Una cuenta con señal de alerta, un texto repetido (frase común), cero coordinaciones."
 >
   <section class="border-b border-white/5">
     <div class="mx-auto max-w-7xl px-6 py-16">
@@ -63,15 +71,15 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
         <Badge variant="verde" dot>Caso documentado</Badge>
         <Badge variant="rojo">Bot · confianza 0.65 (no publicado)</Badge>
         <Badge variant="muted">Análisis: {fechaAnalisis}</Badge>
-        <Badge variant="verde">Multicanal: Bluesky + Telegram</Badge>
+        <Badge variant="verde">Multicanal: Bluesky + Telegram + YouTube</Badge>
       </div>
       <h1 class="font-[var(--font-display)] text-4xl md:text-5xl mb-4">
         Primera extracción multicanal: lo que encontramos (y lo que no).
       </h1>
       <p class="text-[var(--color-muted)] max-w-3xl text-lg leading-relaxed">
-        Análisis sobre 241 posts de 2 plataformas (Bluesky + Telegram) con 111 autores/canales
-        distintos. Mostramos los hallazgos con transparencia: incluida la ausencia de coordinación.
-        Eso es lo que diferencia a un observatorio serio de un panel de opinión.
+        Análisis sobre 653 posts de 3 plataformas (Bluesky + Telegram + YouTube) con 468
+        autores/canales distintos. Mostramos los hallazgos con transparencia: incluida la
+        ausencia de coordinación. Eso es lo que diferencia a un observatorio serio de un panel de opinión.
       </p>
     </div>
   </section>
@@ -81,10 +89,10 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
       <ScrollReveal>
         <h2 class="font-[var(--font-display)] text-2xl mb-6 border-l-4 border-[var(--color-rojo)] pl-4">El dataset</h2>
         <div class="grid gap-4 md:grid-cols-4">
-          <Stat etiqueta="Posts únicos" valor={totalPosts.toString()} fuente="Bluesky + Telegram · 2026-10-07" variante="destacada" />
-          <Stat etiqueta="Autores/canales" valor={totalAutores.toString()} fuente="100 handles + 11 canales" />
-          <Stat etiqueta="Plataformas" valor={plataformas.toString()} fuente="Bluesky, Telegram" />
-          <Stat etiqueta="Período" valor="~1 mes" fuente="10 sep - 7 oct 2026" />
+          <Stat etiqueta="Posts únicos" valor={totalPosts.toString()} fuente="3 plataformas · 2026-10-07" variante="destacada" />
+          <Stat etiqueta="Autores/canales" valor={totalAutores.toString()} fuente="Handles + canales + comentaristas" />
+          <Stat etiqueta="Plataformas" valor={plataformas.toString()} fuente="Bluesky, Telegram, YouTube" />
+          <Stat etiqueta="Período" valor="~5 meses" fuente="mayo - octubre 2026" />
         </div>
       </ScrollReveal>
     </div>
@@ -96,35 +104,47 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
         <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-3">01 · Fuentes monitoreadas</p>
         <h2 class="font-[var(--font-display)] text-3xl mb-6">De dónde capturamos.</h2>
         <p class="text-[var(--color-muted)] leading-relaxed max-w-3xl mb-10">
-          Dos plataformas, dos métodos. Bluesky: búsqueda por términos (4 consultas). Telegram:
-          captura de historial de 4 canales públicos colombianos vía MTProto API. Cada captura
-          produce un dataset independiente; los combinamos después quitando duplicados.
+          Tres plataformas, tres métodos. Bluesky: búsqueda por términos. Telegram: captura de canales públicos vía MTProto. YouTube: comentarios de videos políticos vía Data API v3.
         </p>
       </ScrollReveal>
 
       <ScrollReveal delay={120}>
-        <div class="grid gap-6 lg:grid-cols-2">
+        <div class="grid gap-6 lg:grid-cols-3">
           <div>
-            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">Bluesky — 4 términos de búsqueda</p>
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">Bluesky — 4 términos</p>
             <div class="space-y-3">
               {terminosBluesky.map((t) => (
                 <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-4 flex items-center justify-between">
-                  <span class="text-[var(--color-texto)]">"{t.termino}"</span>
+                  <span class="text-sm text-[var(--color-texto)]">"{t.termino}"</span>
                   <span class="font-[var(--font-display)] text-xl text-[var(--color-rojo)]">{t.posts}</span>
                 </div>
               ))}
             </div>
           </div>
           <div>
-            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">Telegram — 4 canales públicos</p>
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">Telegram — 4 canales</p>
             <div class="space-y-3">
               {canalesTelegram.map((c) => (
                 <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-4">
                   <div class="flex items-center justify-between mb-1">
-                    <span class="font-[var(--font-mono)] text-[var(--color-texto)]">{c.canal}</span>
+                    <span class="font-[var(--font-mono)] text-sm text-[var(--color-texto)]">{c.canal}</span>
                     <span class="font-[var(--font-display)] text-xl text-[var(--color-rojo)]">{c.posts}</span>
                   </div>
                   <p class="text-xs text-[var(--color-muted)]">{c.descripcion}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-3">YouTube — 5 videos</p>
+            <div class="space-y-3">
+              {videosYouTube.map((v) => (
+                <div class="rounded-lg border border-white/5 bg-[var(--color-surface)] p-4">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-xs text-[var(--color-muted)] font-[var(--font-mono)]">{v.canal}</span>
+                    <span class="font-[var(--font-display)] text-xl text-[var(--color-rojo)]">{v.comentarios}</span>
+                  </div>
+                  <p class="text-xs text-[var(--color-texto)] leading-snug">{v.titulo}</p>
                 </div>
               ))}
             </div>
@@ -147,7 +167,7 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
             <Badge variant="ambar" dot>Señal leve</Badge>
             <h3 class="font-[var(--font-display)] text-xl mt-3 mb-2">1 cuenta atípica</h3>
             <p class="text-sm text-[var(--color-muted)] leading-relaxed">
-              Una cuenta Bluesky con <strong class="text-[var(--color-texto)]">26 posts</strong> (11% del dataset combinado) dispara
+              Una cuenta Bluesky con <strong class="text-[var(--color-texto)]">26 posts</strong> (4% del dataset) dispara
               señal de cobertura horaria amplia. Confianza <strong class="text-[var(--color-ambar-claro)]">0.65</strong> — por debajo
               del umbral de publicación (0.7). No se etiqueta como bot.
             </p>
@@ -155,13 +175,13 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
         </ScrollReveal>
 
         <ScrollReveal delay={120}>
-          <div class="h-full rounded-lg border border-[var(--color-verde)]/30 bg-[var(--color-bg)] p-6">
-            <Badge variant="verde" dot>Sin evidencia</Badge>
-            <h3 class="font-[var(--font-display)] text-xl mt-3 mb-2">0 coordinaciones</h3>
+          <div class="h-full rounded-lg border border-[var(--color-ambar)]/30 bg-[var(--color-bg)] p-6">
+            <Badge variant="ambar" dot>1 texto repetido</Badge>
+            <h3 class="font-[var(--font-display)] text-xl mt-3 mb-2">Frase común</h3>
             <p class="text-sm text-[var(--color-muted)] leading-relaxed">
-              No se detectaron pares de cuentas publicando en ventanas de 60 segundos con similitud
-              de texto &gt;30%. <strong class="text-[var(--color-texto)]">No hay evidencia de operación coordinada</strong>
-              en este dataset.
+              Detectamos 1 caso de texto idéntico entre 2 cuentas: <em>"que horror"</em>.
+              <strong class="text-[var(--color-texto)]"> No constituye evidencia de coordinación:</strong>
+              es una reacción natural común. La revisión humana descarta el falso positivo.
             </p>
           </div>
         </ScrollReveal>
@@ -169,10 +189,10 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
         <ScrollReveal delay={240}>
           <div class="h-full rounded-lg border border-[var(--color-verde)]/30 bg-[var(--color-bg)] p-6">
             <Badge variant="verde" dot>Sin evidencia</Badge>
-            <h3 class="font-[var(--font-display)] text-xl mt-3 mb-2">0 textos repetidos</h3>
+            <h3 class="font-[var(--font-display)] text-xl mt-3 mb-2">0 coordinaciones</h3>
             <p class="text-sm text-[var(--color-muted)] leading-relaxed">
-              Ningún post se repite entre cuentas distintas. <strong class="text-[var(--color-texto)]">No hay
-              evidencia de copia-pegada masiva</strong> ni de uso de plantillas compartidas en este dataset.
+              No se detectaron pares de cuentas publicando en ventanas de 60 segundos con similitud
+              de texto &gt;30%. <strong class="text-[var(--color-texto)]">No hay evidencia de operación coordinada</strong>.
             </p>
           </div>
         </ScrollReveal>
@@ -182,10 +202,11 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
         <div class="mt-8 rounded-lg border-l-2 border-[var(--color-verde)] bg-[var(--color-bg)] p-6">
           <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-verde-claro)] mb-2">Lectura honesta</p>
           <p class="text-[var(--color-texto)] text-lg leading-relaxed">
-            Con 241 posts en 2 plataformas y 111 autores, <strong>no detectamos operación coordinada</strong>.
-            Sí identificamos una cuenta con volumen atípico que merece seguimiento. El observatorio
-            no inventa operaciones donde no las hay; reportar la ausencia de evidencia es también
-            un hallazgo. Ampliar el dataset y la cobertura temporal permitirá detectar patrones sutiles.
+            Con 653 posts en 3 plataformas y 468 autores, <strong>no detectamos operación coordinada</strong>.
+            La única señal (texto repetido "que horror") es una frase común que cualquier persona diría
+            ante noticias alarmantes — no es coordinación. El observatorio no inventa operaciones
+            donde no las hay; reportar la ausencia de evidencia es también un hallazgo. Ampliar
+            el dataset y la cobertura temporal permitirá detectar patrones sutiles.
           </p>
         </div>
       </ScrollReveal>
@@ -198,10 +219,9 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
         <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-3">03 · Autores con más posts</p>
         <h2 class="font-[var(--font-display)] text-3xl mb-6">Quién publica más.</h2>
         <p class="text-[var(--color-muted)] leading-relaxed max-w-3xl mb-8">
-          Handles seudonimizados (regla §4.4), excepto medios públicos reconocidos.
-          <strong class="text-[var(--color-texto)]">Publicar mucho no implica ser bot:</strong>
-          un medio legítimo puede tener alto volumen. La señal de alerta es combinación de
-          volumen + patrón temporal + repetición de contenido.
+          Handles seudonimizados (regla §4.4). <strong class="text-[var(--color-texto)]">Publicar mucho
+          no implica ser bot:</strong> un medio legítimo puede tener alto volumen. La señal de alerta
+          es combinación de volumen + patrón temporal + repetición de contenido.
         </p>
       </ScrollReveal>
 
@@ -220,10 +240,7 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
             <tbody class="divide-y divide-white/5">
               {topAutores.map((a) => (
                 <tr class="hover:bg-white/[0.02] transition-colors">
-                  <td class="px-4 py-3 font-[var(--font-mono)] text-[var(--color-texto)]">
-                    {a.seudonimo}
-                    {a.publico && <span class="ml-2 text-xs text-[var(--color-muted)]">(medio público)</span>}
-                  </td>
+                  <td class="px-4 py-3 font-[var(--font-mono)] text-[var(--color-texto)]">{a.seudonimo}</td>
                   <td class="px-4 py-3 text-[var(--color-muted)] font-[var(--font-mono)] text-xs">{a.plataforma}</td>
                   <td class="px-4 py-3 text-right font-[var(--font-mono)] text-[var(--color-texto)]">{a.posts}</td>
                   <td class="px-4 py-3 text-right font-[var(--font-mono)]">
@@ -238,8 +255,6 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
                   <td class="px-4 py-3">
                     {a.alerta ? (
                       <Badge variant="ambar" dot>Seguimiento</Badge>
-                    ) : a.publico ? (
-                      <Badge variant="muted">Medio</Badge>
                     ) : (
                       <Badge variant="muted">Sin señal</Badge>
                     )}
@@ -259,10 +274,9 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
         <p class="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--color-rojo-claro)] mb-3">04 · Hashtags</p>
         <h2 class="font-[var(--font-display)] text-3xl mb-6">Temas recurrentes.</h2>
         <p class="text-[var(--color-muted)] leading-relaxed max-w-3xl mb-10">
-          Hashtags más frecuentes en el dataset combinado. Un hashtag que aparece mucho
-          <strong class="text-[var(--color-texto)]">no es evidencia de coordinación</strong>:
-          puede ser tendencia orgánica. La señal aparece cuando el mismo hashtag es usado
-          simultáneamente por cuentas desconectadas.
+          Hashtags más frecuentes (principalmente de Bluesky y Telegram; YouTube tiene menos hashtags en comentarios).
+          <strong class="text-[var(--color-texto)]">Un hashtag frecuente no es evidencia de coordinación</strong>:
+          puede ser tendencia orgánica.
         </p>
       </ScrollReveal>
 
@@ -292,7 +306,7 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
             <span class="font-[var(--font-mono)] text-[var(--color-rojo-claro)] flex-shrink-0">01</span>
             <div>
               <p class="text-[var(--color-texto)] font-semibold mb-1">Dataset acotado.</p>
-              <p class="text-sm text-[var(--color-muted)] leading-relaxed">241 posts en 2 plataformas es insuficiente para detectar patrones sutiles de coordinación. Un operador minimamente cuidadoso puede pasar desapercibido con este volumen. Necesitamos miles de posts para detectar sincronías reales.</p>
+              <p class="text-sm text-[var(--color-muted)] leading-relaxed">653 posts en 3 plataformas es mejor que antes, pero aún insuficiente para detectar patrones sutiles de coordinación. Necesitamos miles de posts y capturas longitudinales (semanales) para encontrar sincronías reales.</p>
             </div>
           </li>
           <li class="flex gap-4">
@@ -328,20 +342,20 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
         <h2 class="font-[var(--font-display)] text-3xl mb-6">Cómo continúa esto.</h2>
         <div class="grid gap-4 md:grid-cols-2">
           <div class="rounded-lg border border-white/5 bg-[var(--color-bg)] p-5">
-            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Más términos y canales</p>
-            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Ampliar búsqueda en Bluesky y añadir más canales de Telegram para triplicar el dataset.</p>
-          </div>
-          <div class="rounded-lg border border-white/5 bg-[var(--color-bg)] p-5">
-            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Mastodon</p>
-            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Añadir extractor de Mastodon (API federada abierta, sin trámite).</p>
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Ampliar YouTube</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Capturar comentarios de 20+ videos políticos más para triplicar el volumen de YouTube.</p>
           </div>
           <div class="rounded-lg border border-white/5 bg-[var(--color-bg)] p-5">
             <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Meta Content Library</p>
             <p class="text-sm text-[var(--color-muted)] leading-relaxed">Solicitado acceso a Facebook e Instagram públicos. Revisión típica: 2-4 semanas.</p>
           </div>
           <div class="rounded-lg border border-white/5 bg-[var(--color-bg)] p-5">
-            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Seguimiento longitudinal</p>
-            <p class="text-sm text-[var(--color-muted)] leading-relaxed">La cuenta @cuenta***63 entra en seguimiento: capturas semanales para ver si el patrón persiste.</p>
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Captura longitudinal</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Capturas semanales recurrentes para detectar patrones a lo largo del tiempo.</p>
+          </div>
+          <div class="rounded-lg border border-white/5 bg-[var(--color-bg)] p-5">
+            <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Heurística ciclo sueño/vigilia</p>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Mejorar detector para identificar bots que simulan ciclos humanos (evasión de detección).</p>
           </div>
         </div>
       </ScrollReveal>
@@ -354,10 +368,16 @@ const maxHashtagCount = Math.max(...hashtags.map((h) => h.count));
         <div class="rounded-lg border-l-2 border-[var(--color-rojo)] bg-[var(--color-surface)] p-6">
           <p class="font-[var(--font-mono)] text-xs uppercase tracking-wider text-[var(--color-rojo-claro)] mb-2">Fuente y método</p>
           <p class="text-[var(--color-muted)] leading-relaxed mb-3">
-            Datos capturados vía APIs públicas (AT Protocol de Bluesky + MTProto de Telegram) el {fechaAnalisis}, usando el pipeline <code class="font-[var(--font-mono)] text-[var(--color-texto)]">operacion-botin/pipeline</code>. Los 241 posts únicos están disponibles en formato Parquet en <code class="font-[var(--font-mono)] text-[var(--color-texto)]">packages/shared/data/raw/</code> con ficha de metadatos por extracción.
+            Datos capturados vía APIs públicas (AT Protocol de Bluesky + MTProto de Telegram +
+            YouTube Data API v3) el {fechaAnalisis}, usando el pipeline
+            <code class="font-[var(--font-mono)] text-[var(--color-texto)]">operacion-botin/pipeline</code>.
+            Los 653 posts únicos están disponibles en formato Parquet en
+            <code class="font-[var(--font-mono)] text-[var(--color-texto)]">packages/shared/data/raw/</code>
+            con ficha de metadatos por extracción.
           </p>
           <p class="text-[var(--color-muted)] leading-relaxed">
-            Análisis ejecutado con 3 familias de heurísticas (temporal, contenido, grafo) según la metodología pública del observatorio. Identificadores seudonimizados salvo medios públicos reconocidos.
+            Análisis ejecutado con 3 familias de heurísticas (temporal, contenido, grafo) según
+            la metodología pública del observatorio. Identificadores seudonimizados.
           </p>
           <div class="mt-4 flex flex-wrap gap-3">
             <Boton variant="secundario" size="sm" href="/metodologia">Ver metodología</Boton>
