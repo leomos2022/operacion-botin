@@ -56,3 +56,6 @@ logs/
 
 # Cloudflare
 .wrangler/
+
+# Telegram MTProto session (NUNCA commitear)
+pipeline/.session/
